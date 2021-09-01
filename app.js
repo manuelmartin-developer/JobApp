@@ -1,6 +1,8 @@
 const express = require('express')
 require('dotenv').config()
-const router = require('./routes/routes')
+const router = require('./routes/routes') // Retreive the web endpoints //! change name??
+const apiRoutes = require('./routes/api') // Retreive the API endpoints //! change name??
+
 
 
 const app = express()
@@ -17,8 +19,8 @@ app.set('views', './views')
 app.use(express.json()) //Para convertir a JSON
 app.use(express.urlencoded({ extended: false }))
 
-app.use('', router) // Endpoints web
-app.use('api/', router) // Endpoints API
+app.use('/', router) // Web endpoints
+app.use('/api', apiRoutes) // API endpoints
 
 
 // Control de error en caso de que se escriba una URL erronea

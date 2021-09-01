@@ -4,6 +4,21 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title Document
-    body 
-        h1 Esto es la Página principal: HOME desde pug
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title JobApp
+    body
+        include ./guest_menu.pug
+        .container
+            input.input(id="inputSearch", type="text", name="search")
+            button.button(id="btnSearch") Search
+        .cards
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+            p.card Aquí iremos poniendo los resultados de la búsqueda
+                p.card Aquí iremos poniendo los resultados de la búsqueda
+                

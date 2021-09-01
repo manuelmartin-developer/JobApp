@@ -12,7 +12,6 @@ router.post('/logout', api.logOutUser)
 router.post('/ads', api.postJob) //! ONLY ADMIN
 router.post('/favorites', api.addFavorite)
 
-
 // PUT
 router.put('/user', api.updateUser)
 router.put('/ads', api.updateJob) //! ONLY ADMIN

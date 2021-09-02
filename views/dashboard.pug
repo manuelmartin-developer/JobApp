@@ -31,9 +31,9 @@ html(lang="es")
             each job in jobs
                     .one_job
                         if job.image
-                            img(src=job.image, alt="company_image", height="50px", width="40px")
+                            img(src=job.image, alt="company_image")
                         else 
-                            img(src='../public/assets/no_image.png', alt="company_image", height="50px", width="40px")
+                            img(src='../public/assets/no_image.png', alt="company_image")
                         p=job.title
                         #buttons_job
                             form(method="PUT", action="/api/ads")

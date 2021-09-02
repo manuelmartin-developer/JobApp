@@ -1,5 +1,7 @@
 const express = require('express')
 require('dotenv').config()
+require('./utils/nosql_db') // Runs NOSQL Database with Mongoose
+
 const router_web = require('./routes/router_web') // Retreive the web endpoints
 const router_api = require('./routes/router_api') // Retreive the API endpoints 
 

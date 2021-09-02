@@ -1,5 +1,5 @@
 doctype html
-html(lang="en")
+html(lang="es")
     head
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
@@ -7,19 +7,21 @@ html(lang="en")
         style
             include ../public/css/style.css
             include ../public/css/menu.css
-        title PROFILE
+        title Dashboard
     body
         include ./admin_menu.pug 
         .container
             form(action="/api/ads", method="POST" autocomplete="off")
-                label(for="title") Title
-                input(type="text" name="Title" required)
-                label(for="company") Company
-                input(type="text" name="company" required) 
-                label(for="location") Location
-                input(type="text" name="location" required) 
-                label(for="image") Company image
+                label(for="title") Título
+                input(type="text" name="Title" )
+                label(for="company") Empresa
+                input(type="text" name="company" ) 
+                label(for="image") Imagen
                 input(type="text" name="image") 
-                label(for="description") Description
+                label(for="location") Localización
+                input(type="text" name="location" ) 
+                label(for="salary") Salario
+                input(type="number" name="salary" ) 
+                label(for="description") Descripción
                 textarea(name="description", cols="30", rows="10" required)
-                input(type="submit", value="Create Job")
+                input(type="submit", value="Crear Oferta")

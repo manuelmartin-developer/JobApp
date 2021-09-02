@@ -1,3 +1,6 @@
+const Jobs = require('../models/jobSchema');
+const NOSQL_db = require('../utils/nosql_db');
+
 //! TO BE CHANGED
 const api = {
     //! GET
@@ -20,8 +23,17 @@ const api = {
         res.status(200).render('api')
     },
     postJob: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+
+        const job = await new Jobs({
+            title: req.body.title,
+            company: req.body.company,
+            image: req.body.image,
+            location: req.body.location,
+            salary: req.body.salary,
+            description: req.body.description
+        });
+        const newJob = await job.save();
+        res.status(200).send(newJob);
     },
     addFavorite: async (req, res) => {
         // ...

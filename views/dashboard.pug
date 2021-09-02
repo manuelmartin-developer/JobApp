@@ -4,6 +4,8 @@ html(lang="es")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous") 
+
         style
             include ../public/css/style.css
             include ../public/css/menu.css
@@ -25,3 +27,20 @@ html(lang="es")
                 label(for="description") Descripción
                 textarea(name="description", cols="30", rows="10" required)
                 input(type="submit", value="Crear Oferta")
+        .list_jobs 
+            each job in jobs
+                    .one_job
+                        if job.image
+                            img(src=job.image, alt="company_image", height="50px", width="40px")
+                        else 
+                            img(src='../public/assets/no_image.png', alt="company_image", height="50px", width="40px")
+                        p=job.title
+                        #buttons_job
+                            form(method="PUT", action="/api/ads")
+                                input(type="hidden", name="id" value=job._id)
+                                button(type="submit")
+                                    i(class="fas fa-edit") 
+                            form(method="DELETE", action="/api/ads")
+                                input(type="hidden", name="id" value=job._id)
+                                button(type="submit")
+                                    i(class="fas fa-minus-square")

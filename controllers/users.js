@@ -1,3 +1,6 @@
+const Jobs = require('../models/jobSchema');
+const NOSQL_db = require('../utils/nosql_db');
+
 const users = {
     home: async (req, res) => {
         // ...
@@ -24,8 +27,11 @@ const users = {
         res.status(200).render('users')
     },
     getAdded: async (req, res) => {
-        // ...
-        res.status(200).render('dashboard')
+        
+        const jobs = await Jobs.find({});
+        res.status(200).render('dashboard',{
+            jobs
+        });
     },
 }
 

@@ -1,5 +1,0 @@
-#Git Ignore Node Modules
-node_modules/
-
-#Git Ignore .env
-.env

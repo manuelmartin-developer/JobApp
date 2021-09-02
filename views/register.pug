@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous") 
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Register
+    body
+        include ./guest_menu.pug
+        .container
+            label(for="name") Name
+            input(type="text" name="name" id="name" required) 
+            label(for="nickname") Email
+            input(type="mail" name="mail" id="mail" required) 
+            label(for="password") Password
+            .pass_container
+                input(type="password" name="password" id="password" required) 
+                i(id="togglePassword" class="fas fa-eye-slash")
+            input(type="submit", value="Register User")

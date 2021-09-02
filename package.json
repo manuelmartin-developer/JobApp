@@ -1,0 +1,33 @@
+{
+  "name": "JobApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelmartin-developer/JobApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuelmartin-developer/JobApp/issues"
+  },
+  "homepage": "https://github.com/manuelmartin-developer/JobApp#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.3",
+    "node-fetch": "^3.0.0",
+    "nodemon": "^2.0.12",
+    "pug": "^3.0.2"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0"
+  }
+}

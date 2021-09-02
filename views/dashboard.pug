@@ -1,0 +1,46 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous") 
+
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Dashboard
+    body
+        include ./admin_menu.pug 
+        .container
+            form(action="/api/ads", method="POST" autocomplete="off")
+                label(for="title") Título
+                input(type="text" name="title" )
+                label(for="company") Empresa
+                input(type="text" name="company" ) 
+                label(for="image") Imagen
+                input(type="text" name="image") 
+                label(for="location") Localización
+                input(type="text" name="location" ) 
+                label(for="salary") Salario
+                input(type="number" name="salary" ) 
+                label(for="description") Descripción
+                textarea(name="description", cols="30", rows="10" required)
+                input(type="submit", value="Crear Oferta")
+        .list_jobs 
+            each job in jobs
+                    .one_job
+                        if job.image
+                            img(src=job.image, alt="company_image")
+                        else 
+                            img(src='../public/assets/no_image.png', alt="company_image")
+                        p=job.title
+                        #buttons_job
+                            form(method="PUT", action="/api/ads")
+                                input(type="hidden", name="id" value=job._id)
+                                button(type="submit")
+                                    i(class="fas fa-edit") 
+                            form(method="DELETE", action="/api/ads")
+                                input(type="hidden", name="id" value=job._id)
+                                button(type="submit")
+                                    i(class="fas fa-minus-square")

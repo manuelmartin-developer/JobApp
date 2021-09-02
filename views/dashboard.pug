@@ -4,7 +4,22 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
         title PROFILE
-    body 
-        h1 Esto es la Página de DASHBOARD: DASHBOARD desde pug. 
-        p Aquí se renderizan los anuncios creados por el admin
+    body
+        include ./admin_menu.pug 
+        .container
+            form(action="/api/ads", method="POST" autocomplete="off")
+                label(for="Title") Title
+                input(type="text" name="Title" required)
+                label(for="company") Company
+                input(type="text" name="company" required) 
+                label(for="location") Location
+                input(type="text" name="location" required) 
+                label(for="image") Company image
+                input(type="text" name="image") 
+                label(for="description") Description
+                textarea(name="description", cols="30", rows="10" required)
+                input(type="submit", value="Create Job")

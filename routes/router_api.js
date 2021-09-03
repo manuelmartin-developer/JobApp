@@ -4,6 +4,7 @@ const api = require('../controllers/api')
 
 // GET
 router.get('/search', api.searchJob)
+router.get('/ads', api.getAllJobs)//! ONLY ADMIN
 
 // POST
 router.post('/user', api.signInUser)

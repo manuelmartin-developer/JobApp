@@ -32,7 +32,7 @@ const api = {
             description: req.body.description
         });
         const newJob = await job.save();
-        res.status(200).send(newJob);
+        res.status(200).json(newJob);
     },
     addFavorite: async (req, res) => {
         // ...

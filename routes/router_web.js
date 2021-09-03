@@ -8,7 +8,7 @@ router.get('/login', users.login)
 router.get('/favorites', users.getFavorites)
 router.get('/profile', users.getProfile)
 router.get('/users', users.getUsers)// ONLY ADMIN!
-router.get('/dashboard', users.getAdded)// ONLY ADMIN!
+router.get('/dashboard', users.getDashboard)// ONLY ADMIN!
 
 // POST
 //router.post('/logout', users.logout)

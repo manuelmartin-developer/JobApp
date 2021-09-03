@@ -25,12 +25,8 @@ const users = {
         // ...
         res.status(200).render('users')
     },
-    getAdded: async (req, res) => {
-        
-        const jobs = await Jobs.find({});
-        res.status(200).render('dashboard',{
-            jobs
-        });
+    getDashboard: async (req, res) => {
+        res.status(200).render('dashboard');
     },
 }
 

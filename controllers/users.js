@@ -1,5 +1,4 @@
 const Jobs = require('../models/jobSchema');
-const NOSQL_db = require('../utils/nosql_db');
 
 const users = {
     home: async (req, res) => {

@@ -1,5 +1,4 @@
 const Jobs = require('../models/jobSchema');
-const NOSQL_db = require('../utils/nosql_db');
 
 //! TO BE CHANGED
 const api = {

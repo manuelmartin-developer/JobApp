@@ -8,6 +8,24 @@ const list_jobs = document.querySelector('.list_jobs');
 
 const btn_create = document.querySelector('#btn_create');
 
+// Este método carga todos los jobs de la base de datos, haciendo
+// un fetch a la api. Una vez elaborado el método para pintar cada tarjeta
+// habrá que refactorizarlo. 
+
+(async () => {
+    const response = await fetch ('/api/ads');
+    const jobs = await response.json();
+
+    for (job of jobs){
+        //! REFACTORIZAR
+        //? Aquí irá el método paintCard que pintará una tarjeta por cada elemento de la DB
+        const card = document.createElement('div');
+        card.setAttribute('class', 'detail-card')
+        card.innerText = job.title;
+        list_jobs.appendChild(card);
+    }
+})()
+
 btn_create.addEventListener('click', (event) => {
     event.preventDefault()
     // Con este listener simulamos manualmente un método POST -> recogemos los values de cada input -> se igualan al esquema new Job en "postJob" -> lo guarda a su vez en la base de datos -> se transforma en json y lo devuelve

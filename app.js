@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 require('./utils/nosql_db') // Runs NOSQL Database with Mongoose
+const path = require('path');
 
 const router_web = require('./routes/router_web') // Retreive the web endpoints
 const router_api = require('./routes/router_api') // Retreive the API endpoints 
@@ -10,6 +11,7 @@ const port = process.env.PORT
 
 // Uso de archivos estáticos
 app.use(express.static('public'))
+app.use("/utils", express.static(path.join(__dirname, 'utils')));
 
 // Motor de vistas
 app.set('view engine', 'pug')

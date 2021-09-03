@@ -1,4 +1,3 @@
-const Jobs = require('../models/jobSchema');
 
 const users = {
     home: async (req, res) => {
@@ -26,7 +25,7 @@ const users = {
         res.status(200).render('users')
     },
     getDashboard: async (req, res) => {
-        res.status(200).render('dashboard');
+        res.status(200).render('dashboard')
     },
 }
 

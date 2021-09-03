@@ -22,17 +22,32 @@ const api = {
         res.status(200).render('api')
     },
     postJob: async (req, res) => {
-
-        const job = await new Jobs({
-            title: req.body.title,
-            company: req.body.company,
-            image: req.body.image,
-            location: req.body.location,
-            salary: req.body.salary,
-            description: req.body.description
-        });
-        const newJob = await job.save();
-        res.status(200).json(newJob);
+        try {
+            const job = await new Jobs({
+                title: req.body.title,
+                company: req.body.company,
+                image: req.body.image,
+                location: req.body.location,
+                salary: req.body.salary,
+                description: req.body.description
+            });
+            const newJob = await job.save();
+            res.status(200).json(newJob);
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    getAllJobs: async (req, res) => {
+        try {
+            const allJobs = await Jobs.find();
+            res.status(200).json(allJobs);
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     addFavorite: async (req, res) => {
         // ...

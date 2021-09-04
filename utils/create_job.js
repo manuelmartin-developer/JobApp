@@ -13,10 +13,10 @@ const btn_create = document.querySelector('#btn_create');
 // habrá que refactorizarlo. 
 
 (async () => {
-    const response = await fetch ('/api/ads');
+    const response = await fetch('/api/ads');
     const jobs = await response.json();
 
-    for (job of jobs){
+    for (job of jobs) {
         //! REFACTORIZAR
         //? Aquí irá el método paintCard que pintará una tarjeta por cada elemento de la DB
         const card = document.createElement('div');
@@ -44,7 +44,7 @@ btn_create.addEventListener('click', (event) => {
                 salary: input_salary.value,
                 description: input_description.value
             })
-        }); 
+        });
         const data = await response.json();
         return data;
     }

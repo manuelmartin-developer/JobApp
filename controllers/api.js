@@ -1,11 +1,14 @@
 const Jobs = require('../models/jobSchema');
+const { scraper } = require('../utils/scraper_linkedin')
+
 
 //! TO BE CHANGED
 const api = {
     //! GET
     searchJob: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        const results = await scraper('https://es.linkedin.com/jobs/search?keywords=Developer&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0');
+        console.log(results);
+        res.status(200).json(results);
     },
 
     //! POST

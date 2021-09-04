@@ -11,14 +11,43 @@ html(lang="en")
     body
         include ./guest_menu.pug
         .container
-            input.input(id="inputSearch", type="text", name="search")
-            button.button(id="btnSearch") Search
+            input.input(id="input_search", type="text", name="search")
+            button.button(id="btn_search") Search
         .cards
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-            p.card Aquí iremos poniendo los resultados de la búsqueda
-                p.card Aquí iremos poniendo los resultados de la búsqueda
-                
+    script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+    script.
+        const btn_search = document.querySelector('#btn_search');
+        const cards = document.querySelector('.cards');
+
+        btn_search.addEventListener('click', () => {
+            let getData = async () => {
+            const response = await fetch('/api/search');  
+            const data = await response.json();
+            return data;
+        }
+        let renderData = async () => {
+        //! REFACTOR
+        // Feedback para saber que se está realizando la búsqueda
+            Swal.fire({
+            title: 'Estamos buscando...',
+            html: 'Espera un momento...',
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading()
+            }
+            });
+            const data = await getData()
+            // Aquí se crea la tarjeta del job creado (con appendChild)
+            //! VER demo clase 20 del 31/08 demo-client/js/utils/paintData
+            for(job of data){
+                const paragraph = document.createElement('p');
+                paragraph.innerHTML = job.jobTitle 
+                cards.appendChild(paragraph);
+            }
+            //Cerramos alert
+            swal.close()
+        }
+            renderData();
+        })
+                    

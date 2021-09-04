@@ -27,7 +27,12 @@ const scraper = async (url) => {
         const scrapedData = [];
 
         console.log("Opening the browser......");
-        const browser = await puppeteer.launch({headless: false});
+        const browser = await puppeteer.launch({
+            "headless": true,
+            "args": ["--fast-start", "--disable-extensions", "--no-sandbox"],
+            "ignoreHTTPSErrors": true
+        
+        });
         const page = await browser.newPage();
 
         console.log(`Navigating to ${url}...`);
@@ -57,6 +62,4 @@ const scraper = async (url) => {
     }
 
 }
-scraper('https://www.tecnoempleo.com/busqueda-empleo.php?te=developer&cp=,29,&ex=,3,#buscador-ofertas-ini')
-
 module.exports = { scraper };

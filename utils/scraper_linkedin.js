@@ -4,17 +4,19 @@ async function autoScroll(page) {
     let lastHeight = await page.evaluate('document.body.scrollHeight');
     while (true) {
         await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(2000);
         let newHeight = await page.evaluate('document.body.scrollHeight');
         
         //! A falta de botón de cargar más resultados
-        // let btnMore = await page.evaluate(() => {
-        //     return document.querySelector('.infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
-        // });
-        // console.log(btnMore);
-        // if(btnMore){
-        //     await page.click('.section.two-pane-serp-page__results-list > button')
-        // }
+        let btnMore = await page.evaluate(() => {
+            let btnMore2 = document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
+            return btnMore2
+        });
+
+        if(btnMore[0]){
+            await page.click('.two-pane-serp-page__results-list > button')
+        }
+
         if (newHeight === lastHeight) {
             break;
         }
@@ -77,7 +79,7 @@ const scraper = async (url) => {
             return jobData
         });
         await browser.close();
-        
+        console.log(jobs);
         return jobs
     } catch (error) {
         console.log("Error: ", error);

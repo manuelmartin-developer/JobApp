@@ -17,11 +17,12 @@ html(lang="en")
     script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
     script.
         const btn_search = document.querySelector('#btn_search');
+        const input_search = document.querySelector('#input_search');
         const cards = document.querySelector('.cards');
 
-        btn_search.addEventListener('click', () => {
-            let getData = async () => {
-            const response = await fetch('/api/search');  
+        btn_search.addEventListener('click', () => { 
+            let getData = async () => {      
+            const response = await fetch(`/api/search?query=${input_search.value}`);  
             const data = await response.json();
             return data;
         }
@@ -40,6 +41,11 @@ html(lang="en")
             const data = await getData()
             // Aquí se crea la tarjeta del job creado (con appendChild)
             //! VER demo clase 20 del 31/08 demo-client/js/utils/paintData
+            cards.innerHTML = "";
+            const div = document.createElement('div')
+            div.innerHTML = `Hay ${data.length} elementos en la búsqueda
+            `
+            cards.appendChild(div);
             for(job of data){
                 const paragraph = document.createElement('p');
                 paragraph.innerHTML = job.jobTitle 

@@ -48,3 +48,6 @@ body{
     border-radius: 25px;
     padding: 5px 0;
 }
+.cards>div {
+    background-color: cadetblue;
+}

@@ -6,9 +6,16 @@ const { scraper } = require('../utils/scraper_linkedin')
 const api = {
     //! GET
     searchJob: async (req, res) => {
-        const results = await scraper('https://es.linkedin.com/jobs/search?keywords=Developer&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0');
-        console.log(results);
-        res.status(200).json(results);
+        try { 
+            const query = req.query.query;
+            const search = query.replace(" ", "+");
+            const results = await scraper(`https://es.linkedin.com/jobs/search?keywords=developer+${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
+            res.status(200).json(results);
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });         
+        }
     },
 
     //! POST

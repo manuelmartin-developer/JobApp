@@ -7,10 +7,8 @@ async function autoScroll(page) {
         await page.waitForTimeout(2000);
         let newHeight = await page.evaluate('document.body.scrollHeight');
         
-        //! A falta de botón de cargar más resultados
         let btnMore = await page.evaluate(() => {
-            let btnMore2 = document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
-            return btnMore2
+            return document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
         });
 
         if(btnMore[0]){
@@ -37,7 +35,7 @@ const scraper = async (url) => {
         const page = await browser.newPage();
         page.setViewport({
             width: 1280,
-            height: 926
+            height: 8000
         });
         
         
@@ -46,7 +44,7 @@ const scraper = async (url) => {
         await page.waitForSelector('.jobs-search__results-list');
         await autoScroll(page);
         
-        const jobs = await page.evaluate(() => {
+        const jobs = await page.$$eval('.jobs-search__results-list',() => {
             const jobData = [];
             let jobTitle = "";
             let jobCompany = "";
@@ -54,7 +52,7 @@ const scraper = async (url) => {
             let jobDate = "";
             let jobImg = "";
             let jobUrl = "";
-            const issues = document.querySelectorAll('.jobs-search__results-list > li');
+            const issues = document.querySelectorAll('ul.jobs-search__results-list > li');
             issues.forEach(issue => {
                 //!REFACTOR
                 if(issue.querySelector(".base-search-card__info > h3")){
@@ -73,16 +71,16 @@ const scraper = async (url) => {
                     jobLocation= "Sin datos"
                 }
                 //! DATE
-                if(issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate")){
-                    jobDate = issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate").innerText
+                if(issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate--new")){
+                    jobDate = issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate--new").innerText
                 }else{
-                    jobDate= "Sin datos"
+                    jobDate = issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate").innerText
                 }
                 //! IMG
-                if(issue.querySelector("div.search-entity-media > img")){
-                    jobImg = issue.querySelector("div.search-entity-media > img").src
+                if(issue.querySelector("div.base-card > div.search-entity-media > img")){
+                    jobImg = issue.querySelector("div.base-card > div.search-entity-media > img").src
                 }else{
-                    jobImg= "Sin datos"
+                    jobImg= "https://manuelmartin.name/no_image.png"
                 }
                 //! JOB URL
                 if(issue.querySelector("a.base-card__full-link")){

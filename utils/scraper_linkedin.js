@@ -51,6 +51,9 @@ const scraper = async (url) => {
             let jobTitle = "";
             let jobCompany = "";
             let jobLocation = "";
+            let jobDate = "";
+            let jobImg = "";
+            let jobUrl = "";
             const issues = document.querySelectorAll('.jobs-search__results-list > li');
             issues.forEach(issue => {
                 //!REFACTOR
@@ -69,13 +72,33 @@ const scraper = async (url) => {
                 }else{
                     jobLocation= "Sin datos"
                 }
+                //! DATE
+                if(issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate")){
+                    jobDate = issue.querySelector("div.base-search-card__info > div > time.job-search-card__listdate").innerText
+                }else{
+                    jobDate= "Sin datos"
+                }
+                //! IMG
+                if(issue.querySelector("div.search-entity-media > img")){
+                    jobImg = issue.querySelector("div.search-entity-media > img").src
+                }else{
+                    jobImg= "Sin datos"
+                }
+                //! JOB URL
+                if(issue.querySelector("a.base-card__full-link")){
+                    jobUrl = issue.querySelector("a.base-card__full-link").href
+                }else{
+                    jobUrl= "Sin datos"
+                }
                 jobData.push({
                     "jobTitle": jobTitle,
                     "jobCompany": jobCompany,
-                    "jobLocation" : jobLocation
+                    "jobLocation" : jobLocation,
+                    "jobDate" : jobDate,
+                    "jobImg" : jobImg,
+                    "jobUrl" : jobUrl
                 })
             })
-
             return jobData
         });
         await browser.close();

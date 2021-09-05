@@ -45,14 +45,44 @@ html(lang="en")
             // Aquí se crea la tarjeta del job creado (con appendChild)
             //! VER demo clase 20 del 31/08 demo-client/js/utils/paintData
             cards.innerHTML = "";
-            const div = document.createElement('div')
-            div.innerHTML = `Hay ${data.length} elementos en la búsqueda
-            `
-            cards.appendChild(div);
-            for(job of data){
-                const paragraph = document.createElement('p');
-                paragraph.innerHTML = job.jobTitle 
-                cards.appendChild(paragraph);
+            const totalJobs = document.createElement('div')
+            totalJobs.innerHTML = `Hay ${data.length} elementos en la búsqueda
+                        `
+            cards.appendChild(totalJobs);
+            for (job of data) {
+                // Create the Job Card
+                const jobCard = document.createElement('div')
+
+                const imageCard =  document.createElement('div')
+                const companyImage =  document.createElement('img')
+                companyImage.setAttribute('src', job.jobImg )
+
+                const infoCard =  document.createElement('div')
+                const jobLink = document.createElement('a')
+                jobLink.setAttribute('href', job.jobUrl)
+                jobLink.setAttribute('target', '_blank')
+                const title =  document.createElement('h3')
+                title.innerHTML = job.jobTitle
+                const company =  document.createElement('h4')
+                company.innerHTML = job.jobCompany
+                const location =  document.createElement('h4')
+                location.innerHTML = job.jobLocation
+                const date =  document.createElement('h4')
+                date.innerHTML = job.jobDate
+
+                imageCard.appendChild(companyImage)
+
+                jobLink.appendChild(title)
+
+                infoCard.appendChild(jobLink)
+                infoCard.appendChild(company)
+                infoCard.appendChild(location)
+                infoCard.appendChild(date)
+
+                jobCard.appendChild(infoCard)
+                jobCard.appendChild(imageCard)
+
+                cards.appendChild(jobCard);
             }
             //Cerramos alert
             swal.close()

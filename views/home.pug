@@ -50,13 +50,14 @@ html(lang="en")
                         `
             cards.appendChild(totalJobs);
             for (job of data) {
-                // Create the Job Card
+                // Create the Job Card (it will cointain 2 divs: Info and Image)
                 const jobCard = document.createElement('div')
-
+                // Create the Image Card (div > img)
                 const imageCard =  document.createElement('div')
                 const companyImage =  document.createElement('img')
                 companyImage.setAttribute('src', job.jobImg )
 
+                // Create the Info Card (div > (a > h3) + h4 + h4 + h4)
                 const infoCard =  document.createElement('div')
                 const jobLink = document.createElement('a')
                 jobLink.setAttribute('href', job.jobUrl)

@@ -1,9 +1,9 @@
 const input_title = document.querySelector('#input_title');
 const input_company = document.querySelector('#input_company');
-const input_image = document.querySelector('#input_image');
 const input_location = document.querySelector('#input_location');
-const input_salary = document.querySelector('#input_salary');
-const input_description = document.querySelector('#input_description');
+const input_date= document.querySelector('#input_date');
+const input_image = document.querySelector('#input_image');
+const input_url = document.querySelector('#input_url');
 const list_jobs = document.querySelector('.list_jobs');
 
 const btn_create = document.querySelector('#btn_create');
@@ -39,10 +39,10 @@ btn_create.addEventListener('click', (event) => {
             body: JSON.stringify({
                 title: input_title.value,
                 company: input_company.value,
-                image: input_image.value,
                 location: input_location.value,
-                salary: input_salary.value,
-                description: input_description.value
+                date: input_date.value,
+                image: input_image.value,
+                url: input_url.value
             })
         });
         const data = await response.json();

@@ -46,7 +46,7 @@ const scraperLinkedin = async (url) => {
         await page.waitForSelector('.jobs-search__results-list');
         
         //! Desactivado scrooll para aumentar los tiempos de búsqueda
-        // await autoScroll(page);
+        await autoScroll(page);
         
         const jobs = await page.$$eval('.jobs-search__results-list',() => {
             const jobData = [];
@@ -84,7 +84,7 @@ const scraperLinkedin = async (url) => {
                 if(issue.querySelector("div.base-card > div.search-entity-media > img")){
                     jobImg = issue.querySelector("div.base-card > div.search-entity-media > img").src
                 }else{
-                    jobImg= "https://manuelmartin.name/no_image.png"
+                    jobImg= "https://cdn.iconscout.com/icon/premium/png-128-thumb/no-image-2840213-2359555.png"
                 }
                 //! JOB URL
                 if(issue.querySelector("a.base-card__full-link")){
@@ -104,7 +104,7 @@ const scraperLinkedin = async (url) => {
             return jobData
         });
         await browser.close();
-        console.log(jobs);
+        // console.log(jobs);
         return jobs
     } catch (error) {
         console.log("Error: ", error);

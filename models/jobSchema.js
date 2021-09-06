@@ -1,27 +1,23 @@
 const mongoose = require('../utils/nosql_db')
 
 const jobSchema = new mongoose.Schema({
-    title: {
+    jobTitle: {
         type: String,
     },
-    company: {
+    jobCompany: {
         type: String,
     },
-    location: {
+    jobLocation: {
         type: String,
     },
-    image: {
+    jobDate: {
         type: String,
     },
-    description: {
+    jobImg: {
         type: String,
     },
-    date: { 
-        type: Date, 
-        default: Date.now 
-    },
-    salary: {
-        type: Number,
+    jobUrl: {
+        type: String,
     },
 })
 

@@ -9,8 +9,13 @@ const api = {
         try { 
             const query = req.query.query;
             const search = query.replace(" ", "+");
-            const results = await scraperLinkedin(`https://es.linkedin.com/jobs/search?keywords=developer+${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
-            res.status(200).json(results);
+            
+            const linkedin = await scraperLinkedin(`https://es.linkedin.com/jobs/search?keywords=developer+${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
+            const jobAds = await Jobs.find({
+                jobTitle: {$regex : query, $options: 'i'}
+            })
+            const data = linkedin.concat(jobAds)
+            res.status(200).json(data);
         } catch (error) {
             res.status(400).json({
                 error: error.message
@@ -34,12 +39,12 @@ const api = {
     postJob: async (req, res) => {
         try {
             const job = await new Jobs({
-                title: req.body.title,
-                company: req.body.company,
-                image: req.body.image,
-                location: req.body.location,
-                salary: req.body.salary,
-                description: req.body.description
+                jobTitle: req.body.title,
+                jobCompany: req.body.company,
+                jobLocation: req.body.location,
+                jobDate: req.body.date,
+                jobImg: req.body.image,
+                jobUrl: req.body.url,
             });
             const newJob = await job.save();
             res.status(200).json(newJob);

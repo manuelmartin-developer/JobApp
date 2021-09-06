@@ -83,8 +83,17 @@ const api = {
         res.status(200).render('api')
     },
     deleteJob: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const url = await req.body.url
+            const deleteJob = await Jobs.findOneAndDelete({
+                jobUrl: url
+            });
+            res.status (204).json(deleteJob);             
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     deleteFavorite: async (req, res) => {
         // ...

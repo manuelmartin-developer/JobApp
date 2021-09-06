@@ -2,18 +2,20 @@ const puppeteer = require('puppeteer')
 
 async function autoScroll(page) {
     let lastHeight = await page.evaluate('document.body.scrollHeight');
+    
     while (true) {
         await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-        await page.waitForTimeout(2000);
+        await page.waitForTimeout(500);
         let newHeight = await page.evaluate('document.body.scrollHeight');
         
-        let btnMore = await page.evaluate(() => {
-            return document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
-        });
+        //! Botón de carga de más resultados desactivado por tiempo de carga excesivo
+        // let btnMore = await page.evaluate(() => {
+        //     return document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
+        // });
 
-        if(btnMore[0]){
-            await page.click('.two-pane-serp-page__results-list > button')
-        }
+        // if(btnMore[0]){
+        //     await page.click('.two-pane-serp-page__results-list > button')
+        // }
 
         if (newHeight === lastHeight) {
             break;
@@ -22,7 +24,7 @@ async function autoScroll(page) {
     }
 }
 
-const scraper = async (url) => {
+const scraperLinkedin = async (url) => {
 
     try {
         console.log("Opening the browser......");
@@ -35,14 +37,16 @@ const scraper = async (url) => {
         const page = await browser.newPage();
         page.setViewport({
             width: 1280,
-            height: 8000
+            height: 7000
         });
         
         
         console.log(`Navigating to ${url}...`);
         await page.goto(url);
         await page.waitForSelector('.jobs-search__results-list');
-        await autoScroll(page);
+        
+        //! Desactivado scrooll para aumentar los tiempos de búsqueda
+        // await autoScroll(page);
         
         const jobs = await page.$$eval('.jobs-search__results-list',() => {
             const jobData = [];
@@ -108,5 +112,5 @@ const scraper = async (url) => {
 
 }
 module.exports = {
-    scraper
+    scraperLinkedin
 };

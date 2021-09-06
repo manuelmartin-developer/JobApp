@@ -1,5 +1,5 @@
 const Jobs = require('../models/jobSchema');
-const { scraper } = require('../utils/scraper_linkedin')
+const { scraperLinkedin } = require('../utils/scraper_linkedin')
 
 
 //! TO BE CHANGED
@@ -9,7 +9,7 @@ const api = {
         try { 
             const query = req.query.query;
             const search = query.replace(" ", "+");
-            const results = await scraper(`https://es.linkedin.com/jobs/search?keywords=developer+${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
+            const results = await scraperLinkedin(`https://es.linkedin.com/jobs/search?keywords=developer+${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
             res.status(200).json(results);
         } catch (error) {
             res.status(400).json({

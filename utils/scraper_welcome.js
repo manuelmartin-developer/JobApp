@@ -1,29 +1,5 @@
 const puppeteer = require('puppeteer')
 
-async function autoScroll(page) {
-    let lastHeight = await page.evaluate('document.body.scrollHeight');
-
-    while (true) {
-        await page.evaluate('window.scrollTo(0, document.body.scrollHeight)');
-        await page.waitForTimeout(500);
-        let newHeight = await page.evaluate('document.body.scrollHeight');
-
-        //! Botón de carga de más resultados desactivado por tiempo de carga excesivo
-        // let btnMore = await page.evaluate(() => {
-        //     return document.getElementsByClassName('infinite-scroller__show-more-button infinite-scroller__show-more-button--visible')
-        // });
-
-        // if(btnMore[0]){
-        //     await page.click('.two-pane-serp-page__results-list > button')
-        // }
-
-        if (newHeight === lastHeight) {
-            break;
-        }
-        lastHeight = newHeight;
-    }
-}
-
 const scraperWelcome = async (url) => {
 
     try {
@@ -43,9 +19,6 @@ const scraperWelcome = async (url) => {
 
         console.log(`Navigating to ${url}...`);
         await page.goto(url);
-
-        //! Desactivado scroll para aumentar los tiempos de búsqueda
-        await autoScroll(page);
 
         const jobs = await page.$$eval('ol.sc-1dr65rf-0.rvKcA.ais-Hits-list', () => {
             const jobData = [];
@@ -107,7 +80,6 @@ const scraperWelcome = async (url) => {
             return jobData
         });
         await browser.close();
-        console.log(jobs);
         return jobs
     } catch (error) {
         console.log("Error: ", error);

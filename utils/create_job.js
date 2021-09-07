@@ -55,24 +55,23 @@ const btn_create = document.querySelector('#btn_create');
             (async function () {
                 const editValues = await Swal.fire({
                     title: 'Editar Trabajo',
-                    html: 
-                        `<label id="swal-label1" class="swal1-label">Título</label><br>` +
+                    html: `<label id="swal-label1" class="swal1-label">Título</label><br>` +
                         `<input id="swal-input1" class="swal1-input" value="${title}"><br>` +
                         `<label id="swal-label2" class="swal1-label">Empresa</label><br>` +
-                        `<input id="swal-input2" class="swal1-input" value="${company}"><br>`+
+                        `<input id="swal-input2" class="swal1-input" value="${company}"><br>` +
                         `<label id="swal-label2" class="swal1-label">Localización</label><br>` +
-                        `<input id="swal-input3" class="swal1-input" value="${location}"><br>`+
+                        `<input id="swal-input3" class="swal1-input" value="${location}"><br>` +
                         `<label id="swal-label2" class="swal1-label">Fecha publicación</label><br>` +
-                        `<input id="swal-input4" class="swal1-input" value="${date}"><br>`+
+                        `<input id="swal-input4" class="swal1-input" value="${date}"><br>` +
                         `<label id="swal-label2" class="swal1-label">Imagen</label><br>` +
-                        `<input id="swal-input5" class="swal1-input" value="${image}"><br>`+
+                        `<input id="swal-input5" class="swal1-input" value="${image}"><br>` +
                         `<label id="swal-label2" class="swal1-label">Url</label><br>` +
                         `<input id="swal-input6" class="swal1-input" value="${url}"><br>`,
-                        showCancelButton: true,
-                        confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
-                        cancelButtonText: 'Cancelar',
-                        confirmButtonText: 'Editar',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    cancelButtonText: 'Cancelar',
+                    confirmButtonText: 'Editar',
                     preConfirm: () => {
                         return [
                             document.getElementById('swal-input1').value,
@@ -92,6 +91,50 @@ const btn_create = document.querySelector('#btn_create');
                     const newDate = editValues.value[3];
                     const newImage = editValues.value[4];
                     const newUrl = editValues.value[5];
+
+                    (async function () {
+
+                        await fetch('/api/ads', {
+                            method: 'PUT',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                jobTitle: newTitle,
+                                jobCompany: newCompany,
+                                joblocation: newLocation,
+                                jobDate: newDate,
+                                jobImg: newImage,
+                                jobUrl: newUrl
+                            })
+                        });
+                        Swal.fire(
+                            'Oferta editada',
+                            'success'
+                        )
+                        card.innerHTML = `<div class="card">
+                                            <div class="infoCard"> 
+                                                <a href="${newUrl}" target="_blank">
+                                                    <h3>${newTitle}</h3>
+                                                </a>
+                                                <h4>${newCompany}</h4>
+                                                <h4>${newLocation}</h4>
+                                                <h4>${newDate}</h4>
+                                            </div>
+                                            <div class="imageCard">
+                                                <img src="${newImage}">
+                                            </div>
+                                            <button id="${newUrl}">
+                                                <i class="far fa-edit" aria-hidden="true"></i>
+                                            </button>
+                                            <button id="${newUrl}">
+                                                <i class="far fa-trash-alt" aria-hidden="true"></i>
+                                            </button>
+                                        </div>`
+                        
+
+                    })();
                 }
             })();
 

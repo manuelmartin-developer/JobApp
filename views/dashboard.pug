@@ -25,8 +25,11 @@ html(lang="es")
             label(for="url") Url oferta
             input(type="text" name="url" id="input_url" placeholder="Introduce URL Oferta") 
             input(type="button", value="Crear Oferta" id="btn_create")
+            button(onclick="topFunction()" id="btn_top")
+                i(class="fas fa-chevron-circle-up")
         .cards
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/paint_card.js")
         script(src="utils/create_job.js")
+        script(src="/utils/top_button.js")
             

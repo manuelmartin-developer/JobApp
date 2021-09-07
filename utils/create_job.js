@@ -29,14 +29,20 @@ const btn_create = document.querySelector('#btn_create');
     for (let card of cards) {
 
         const url = card.querySelector('a').href;
+        const title = card.querySelector('.infoCard > a > h3').innerText;
+        const company = card.querySelector('.infoCard > h4:nth-child(2)').innerText;
+        const location = card.querySelector('.infoCard > h4:nth-child(3)').innerText;
+        const date = card.querySelector('.infoCard > h4:nth-child(4)').innerText;
+        const image = card.querySelector('.imageCard > img').src;
+
         const editButton = document.createElement('button');
-        editButton.setAttribute("name", url)
+        editButton.setAttribute("id", url)
         const iconEdit = document.createElement('i');
         iconEdit.setAttribute('class', 'far fa-edit');
         editButton.appendChild(iconEdit);
 
         const deleteButton = document.createElement('button');
-        deleteButton.setAttribute("name", url)
+        deleteButton.setAttribute("id", url)
         const iconDelete = document.createElement('i');
         iconDelete.setAttribute('class', 'far fa-trash-alt');
         deleteButton.appendChild(iconDelete);
@@ -45,8 +51,50 @@ const btn_create = document.querySelector('#btn_create');
         card.appendChild(deleteButton);
 
         editButton.addEventListener('click', () => {
-            // Hay que hacer un alert con un formulario?
-            // en el que puedas editar el trabajo.
+
+            (async function () {
+                const editValues = await Swal.fire({
+                    title: 'Editar Trabajo',
+                    html: 
+                        `<label id="swal-label1" class="swal1-label">Título</label><br>` +
+                        `<input id="swal-input1" class="swal1-input" value="${title}"><br>` +
+                        `<label id="swal-label2" class="swal1-label">Empresa</label><br>` +
+                        `<input id="swal-input2" class="swal1-input" value="${company}"><br>`+
+                        `<label id="swal-label2" class="swal1-label">Localización</label><br>` +
+                        `<input id="swal-input3" class="swal1-input" value="${location}"><br>`+
+                        `<label id="swal-label2" class="swal1-label">Fecha publicación</label><br>` +
+                        `<input id="swal-input4" class="swal1-input" value="${date}"><br>`+
+                        `<label id="swal-label2" class="swal1-label">Imagen</label><br>` +
+                        `<input id="swal-input5" class="swal1-input" value="${image}"><br>`+
+                        `<label id="swal-label2" class="swal1-label">Url</label><br>` +
+                        `<input id="swal-input6" class="swal1-input" value="${url}"><br>`,
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        cancelButtonText: 'Cancelar',
+                        confirmButtonText: 'Editar',
+                    preConfirm: () => {
+                        return [
+                            document.getElementById('swal-input1').value,
+                            document.getElementById('swal-input2').value,
+                            document.getElementById('swal-input3').value,
+                            document.getElementById('swal-input4').value,
+                            document.getElementById('swal-input5').value,
+                            document.getElementById('swal-input6').value
+                        ]
+                    }
+                })
+
+                if (editValues) {
+                    const newTitle = editValues.value[0];
+                    const newCompany = editValues.value[1];
+                    const newLocation = editValues.value[2];
+                    const newDate = editValues.value[3];
+                    const newImage = editValues.value[4];
+                    const newUrl = editValues.value[5];
+                }
+            })();
+
         });
 
         deleteButton.addEventListener('click', () => {
@@ -63,27 +111,33 @@ const btn_create = document.querySelector('#btn_create');
                 confirmButtonText: '¡Sí, bórralo!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    fetch('/api/ads', {
-                        method: 'DELETE',
-                        headers: {
-                            'Accept': 'application/json',
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            url: deleteButton.name
-                        })
-                    });
-                    Swal.fire(
-                        'Borrado!',
-                        'El trabajo ha sido borrado de la DB',
-                        'success'
-                    )
-                }
-            })
-        });
-    }
 
-})()
+                    (async function () {
+
+                        await fetch('/api/ads', {
+                            method: 'DELETE',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({
+                                url: deleteButton.id
+                            })
+                        });
+                        Swal.fire(
+                            'Borrado!',
+                            'El trabajo ha sido borrado de la DB',
+                            'success'
+                        )
+                        card.remove();
+                    })();
+
+                };
+            });
+        });
+    };
+
+})();
 
 btn_create.addEventListener('click', (event) => {
     // Con este listener simulamos manualmente un método POST -> recogemos los values de cada input -> se igualan al esquema new Job en "postJob" -> lo guarda a su vez en la base de datos -> se transforma en json y lo devuelve
@@ -118,6 +172,14 @@ btn_create.addEventListener('click', (event) => {
         )
         // Pintamos el nuevo trabajo
         paintCard(newJob);
+
+        // Limpiamos los inputs
+        input_title.value = "";
+        input_company.value = "";
+        input_location.value = "";
+        input_date.value = "";
+        input_image.value = "";
+        input_url.value = "";
     })()
 
 })

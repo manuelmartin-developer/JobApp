@@ -4,11 +4,13 @@ const paintCard = (job) => {
     jobCard.setAttribute('class', 'card')
     // Create the Image Card (div > img)
     const imageCard = document.createElement('div')
+    imageCard.setAttribute('class', 'imageCard')
     const companyImage = document.createElement('img')
     companyImage.setAttribute('src', job.jobImg)
 
     // Create the Info Card (div > (a > h3) + h4 + h4 + h4)
     const infoCard = document.createElement('div')
+    infoCard.setAttribute('class', 'infoCard')
     const jobLink = document.createElement('a')
     jobLink.setAttribute('href', job.jobUrl)
     jobLink.setAttribute('target', '_blank')

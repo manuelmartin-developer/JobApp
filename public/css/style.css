@@ -51,3 +51,18 @@ body{
 .cards>div {
     background-color: cadetblue;
 }
+
+#btn_top {
+	display: none;
+	position: fixed;
+	bottom: 8%;
+	right: 8%;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: #F0AD02;
+	cursor: pointer;
+	font-size: 2rem;
+	opacity: 0.80;
+}

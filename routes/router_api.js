@@ -7,7 +7,7 @@ router.get('/search', api.searchJob)
 router.get('/ads', api.getAllJobs)//! ONLY ADMIN
 
 // POST
-router.post('/user', api.signInUser)
+router.post('/user', api.postUser)
 router.post('/login', api.logInUser)
 router.post('/logout', api.logOutUser)
 router.post('/ads', api.postJob) //! ONLY ADMIN

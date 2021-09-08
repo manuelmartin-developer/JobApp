@@ -5,6 +5,10 @@ const {
     scraperWelcome
 } = require('../utils/scraper_welcome');
 
+const { createUser } = require('../models/users')
+
+const Users = require('../utils/sql_db')
+
 //! TO BE CHANGED
 const api = {
     //! GET
@@ -31,9 +35,25 @@ const api = {
     },
 
     //! POST
-    signInUser: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+    postUser: async (req, res) => {
+        const name = await req.body.name
+        const surname = await req.body.surname
+        const email = await req.body.email
+        const password = await req.body.password
+        console.log(req.body); //! HASTA AQUÍ FUNCIONA
+        await Users.connect()
+
+        await Users.query('INSERT INTO users (name, surname, email, password) VALUES ($1, $2, $3, $4)', [name, surname, email, password], (error, results) => {
+            if (error) {
+                console.log(error)
+            }
+            console.log(results);
+            res.status(201).json(results)
+        })
+        await Users.end()
+        // const newUser = await createUser (name, surname, email, password)
+        // console.log(newUser);
+
     },
     logInUser: async (req, res) => {
         // ...

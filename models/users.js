@@ -1,26 +1,30 @@
-const client = require('../utils/sql_db')
-require("dotenv").config() // Carga las variables de configuración ocultas en el .env 
+const { pool, client } = require('../utils/sql_db')
 
 //! Crear usuario
-// const createUser = async (name, surname, email, password) => {
-//     try {
-//         await client.connect()
-//         client.query('INSERT INTO users (name, surname, email, password) VALUES ($1, $2, $3, $4)', [name, surname, email, password], (error, results) => {
-//             if (error) {
-//                 throw error
-//             }
-//             console.log(results);
-//             return results.rows
-//         })
-//     }
-//     catch (error) {
-//         console.log(error);
-//     }
-//     finally {
-//         console.log(`Cerrando conexión`);
-//         client.end(); // Cierra la conexión!!
-//     }
+const createUser = async (name, surname, email, password) => {
+    
+    try {
+        const response = await pool.query('INSERT INTO users (name, surname, email, password) VALUES ($1, $2, $3, $4)', [name, surname, email, password])
+        return response;
+      } catch (err) {
+        console.log(err.stack)
+      }
 
-// }
+};
 
-// module.exports = { createUser }
+//! Obtener Usuarios de la base de datos
+const getUser = async() => {
+    
+}
+
+//! Actualizar usuario
+const updateUser = async() => {
+    
+}
+
+//! Borrar usuario
+const deleteUser = async() => {
+
+}
+
+module.exports = { createUser, getUser, updateUser, deleteUser }

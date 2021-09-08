@@ -1,13 +1,15 @@
 const Jobs = require('../models/jobSchema');
-const { scraperLinkedin
+const {
+    scraperLinkedin
 } = require('../utils/scraper_linkedin');
 const {
     scraperWelcome
 } = require('../utils/scraper_welcome');
 
-const { createUser } = require('../models/users')
+const {
+    createUser
+} = require('../models/users')
 
-const Users = require('../utils/sql_db')
 
 //! TO BE CHANGED
 const api = {
@@ -36,23 +38,24 @@ const api = {
 
     //! POST
     postUser: async (req, res) => {
-        const name = await req.body.name
-        const surname = await req.body.surname
-        const email = await req.body.email
-        const password = await req.body.password
-        console.log(req.body); //! HASTA AQUÍ FUNCIONA
-        await Users.connect()
 
-        await Users.query('INSERT INTO users (name, surname, email, password) VALUES ($1, $2, $3, $4)', [name, surname, email, password], (error, results) => {
-            if (error) {
-                console.log(error)
+        try {
+            const name = await req.body.name
+            const surname = await req.body.surname
+            const email = await req.body.email
+            const password = await req.body.password
+    
+            const newUser = await createUser(name, surname, email, password);
+            if(newUser.rowCount){
+                res.sendStatus(201);
+            }else{
+                res.sendStatus(400);
             }
-            console.log(results);
-            res.status(201).json(results)
-        })
-        await Users.end()
-        // const newUser = await createUser (name, surname, email, password)
-        // console.log(newUser);
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
 
     },
     logInUser: async (req, res) => {

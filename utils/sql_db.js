@@ -1,18 +1,16 @@
-const { Client } = require('pg');
-require("dotenv").config() // Carga las variables de configuración ocultas en el .env 
+const { Pool, Client } = require('pg')
+const pool = new Pool({
+  user: 'dzfaqmro',
+  host: 'tai.db.elephantsql.com',
+  database: 'dzfaqmro',
+  password: 'foUR-5hz7c7u8srWvdnYkqCEscrmci2A'
+})
 
 const client = new Client({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'users',
-    password: 'fabrizio'
-});
-// client.connect(function (err) {
-//     if (err) {
-//         return console.error('could not connect to postgres', err);
-//     }
-// });
-// console.log(`connection to PostgresDatabase established`);
-// client.end(); // Cierra la conexión!!
+    user: 'dzfaqmro',
+    host: 'tai.db.elephantsql.com',
+    database: 'dzfaqmro',
+    password: 'foUR-5hz7c7u8srWvdnYkqCEscrmci2A'
+  })
 
-module.exports = client
+module.exports = { pool, client }

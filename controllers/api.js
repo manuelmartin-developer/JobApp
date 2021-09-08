@@ -1,6 +1,5 @@
 const Jobs = require('../models/jobSchema');
-const {
-    scraperLinkedin
+const { scraperLinkedin
 } = require('../utils/scraper_linkedin');
 const {
     scraperWelcome

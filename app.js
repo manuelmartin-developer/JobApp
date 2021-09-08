@@ -1,6 +1,7 @@
 const express = require('express')
 require('dotenv').config()
 require('./utils/nosql_db') // Runs NOSQL Database with Mongoose
+require('./utils/sql_db') // Runs SQL Database with Postgres
 const path = require('path');
 
 const router_web = require('./routes/router_web') // Retreive the web endpoints

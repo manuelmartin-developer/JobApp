@@ -38,8 +38,32 @@ btn_search.addEventListener('click', () => {
 
         //Renderizamos todas las tarjetas de los trabajos encontrados
         data.forEach(job => paintCard(job))
-
+        // Ańadimos el botón de favorito
+        addfavBtn()
         //Cerramos alert
         swal.close()
     })()
 })
+
+const addfavBtn = ()=> {
+    
+    const cards = document.querySelectorAll('.card')
+    for(let card of cards){
+        const url = card.querySelector('a').href;
+        
+        const title = card.querySelector('.infoCard > a > h3').innerText;
+        const favButton = document.createElement('button');
+        favButton.setAttribute("id", url)
+        const iconEdit = document.createElement('i');
+        iconEdit.setAttribute('class', 'far fa-heart');
+        favButton.appendChild(iconEdit);
+    
+        card.appendChild(favButton);
+
+        favButton.addEventListener('click', () =>{
+            //De momento, imprimimos por consola la url, aquí tendremos
+            // que hacer un fetch [POST] a /api/favorites
+            console.log(url);
+        })
+    }
+}

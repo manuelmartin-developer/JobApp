@@ -1,16 +1,18 @@
 const { Pool, Client } = require('pg')
+require("dotenv").config()
+
 const pool = new Pool({
-  user: 'dzfaqmro',
-  host: 'tai.db.elephantsql.com',
-  database: 'dzfaqmro',
-  password: 'foUR-5hz7c7u8srWvdnYkqCEscrmci2A'
+  connectionString: process.env.POSTGRE_URI,
+  ssl: {
+    rejectUnauthorized: false
+  }
 })
 
 const client = new Client({
-    user: 'dzfaqmro',
-    host: 'tai.db.elephantsql.com',
-    database: 'dzfaqmro',
-    password: 'foUR-5hz7c7u8srWvdnYkqCEscrmci2A'
+  connectionString: process.env.POSTGRE_URI,
+  ssl: {
+    rejectUnauthorized: false
+  }
   })
 
 module.exports = { pool, client }

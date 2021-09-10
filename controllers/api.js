@@ -59,8 +59,7 @@ const api = {
 
     },
     logInUser: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        res.status(200).json('Login User')
     },
     logOutUser: async (req, res) => {
         // ...

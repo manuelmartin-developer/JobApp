@@ -11,10 +11,12 @@ html(lang="en")
     body
         include ./guest_menu.pug
         .container
-            label(for="Email") Email
-            input(type="mail" name="email" id="email") 
+            label(for="email") Email
+            input(type="text" name="email" id="input_email") 
             label(for="password") Password
             #pass_container
-                input(type="password" name="password" id="password") 
+                input(type="password" name="password" id="input_password") 
                 i(id="togglePassword" class="fas fa-eye-slash")
-            input(type="submit", value="Sign in")
+            input(type="submit", value="Sign in" id="btn_login_user")
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/login_user.js")

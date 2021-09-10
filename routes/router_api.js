@@ -3,6 +3,8 @@ const router = require('express').Router();
 const api = require('../controllers/api')
 const { isEmptyRegister, isValidEmail, checkDuplicateEmail, validatePassword } = require('../middlewares/verifyUserRegister');
 const { isEmptyAddJob } = require('../middlewares/verifyAddJob');
+const { checkEmailAndPassword } = require('../middlewares/verifyUserLogin'
+)
 
 // GET
 router.get('/search', api.searchJob)
@@ -10,7 +12,7 @@ router.get('/ads', api.getAllJobs)//! ONLY ADMIN
 
 // POST
 router.post('/user', isEmptyRegister, isValidEmail, checkDuplicateEmail, validatePassword, api.postUser)
-router.post('/login', api.logInUser)
+router.post('/login', checkEmailAndPassword, api.logInUser)
 router.post('/logout', api.logOutUser)
 router.post('/ads', isEmptyAddJob, api.postJob) //! ONLY ADMIN
 router.post('/favorites', api.addFavorite)

@@ -27,17 +27,38 @@ btn_create_user.addEventListener('click', () => {
                 title: 'Hurra!',
                 text: 'Ahora puedes hacer login',
             }).then(okay => {
-                if(okay){
-                    window.location.href = '/'
+                if (okay) {
+                    window.location.href = '/login'
                 }
             })
-        } else {
+        } else if (response.status === 406) {
 
             Swal.fire({
                 icon: 'error',
-                title: 'Oops...',
-                text: 'El email ya está registrado'})
-            input_email.style.backgroundColor = 'tomato';
+                title: 'Email',
+                text: 'El email no es correcto'
+            })
+        } else if (response.status === 409) {
+
+            Swal.fire({
+                icon: 'error',
+                title: 'Password',
+                text: 'La contraseña debe tener al menos 6 caracteres'
+            })
+        } else if (response.status === 400) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Opss...',
+                text: 'El email ya está en uso'
+            })
+
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Revisa el formulario',
+                text: 'Recuerda que debes rellenar todos los campos'
+            })
+
         }
     })()
 })

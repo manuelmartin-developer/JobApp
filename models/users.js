@@ -13,8 +13,13 @@ const createUser = async (name, surname, email, password) => {
 };
 
 //! Obtener Usuarios de la base de datos
-const getUser = async() => {
-    
+const getUser = async(email) => {
+  try {
+    const response = await pool.query('SELECT * FROM users WHERE email=$1', [email])
+    return response.rowCount;
+  } catch (err) {
+    console.log(err.stack)
+  }
 }
 
 //! Actualizar usuario

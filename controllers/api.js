@@ -5,15 +5,14 @@ const {
 const {
     scraperWelcome
 } = require('../utils/scraper_welcome');
-
 const {
     createUser
 } = require('../models/users')
 
+const bcryptjs = require('bcryptjs');
 
-//! TO BE CHANGED
 const api = {
-    //! GET
+
     searchJob: async (req, res) => {
         try {
             const query = req.query.query;
@@ -36,19 +35,20 @@ const api = {
         }
     },
 
-    //! POST
+
     postUser: async (req, res) => {
 
         try {
             const name = await req.body.name
             const surname = await req.body.surname
             const email = await req.body.email
-            const password = await req.body.password
-    
+            const password = bcryptjs.hashSync(await req.body.password, 8)
+
             const newUser = await createUser(name, surname, email, password);
-            if(newUser.rowCount){
+            
+            if (newUser.rowCount) {
                 res.sendStatus(201);
-            }else{
+            } else {
                 res.sendStatus(400);
             }
         } catch (error) {
@@ -67,22 +67,24 @@ const api = {
         res.status(200).render('api')
     },
     postJob: async (req, res) => {
-        try {
-            const job = await new Jobs({
-                jobTitle: req.body.title,
-                jobCompany: req.body.company,
-                jobLocation: req.body.location,
-                jobDate: req.body.date,
-                jobImg: req.body.image,
-                jobUrl: req.body.url
-            });
-            const newJob = await job.save();
-            res.status(200).json(newJob);
-        } catch (error) {
-            res.status(400).json({
-                error: error.message
-            });
-        }
+
+            try {
+                const job = await new Jobs({
+                    jobTitle: req.body.title,
+                    jobCompany: req.body.company,
+                    jobLocation: req.body.location,
+                    jobDate: req.body.date,
+                    jobImg: req.body.image,
+                    jobUrl: req.body.url
+                });
+                const newJob = await job.save();
+                res.status(200).json(newJob);
+
+            } catch (error) {
+                res.status(400).json({
+                    error: error.message
+                });
+            }
     },
     getAllJobs: async (req, res) => {
         try {

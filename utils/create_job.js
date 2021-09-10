@@ -1,3 +1,4 @@
+
 const input_title = document.querySelector('#input_title');
 const input_company = document.querySelector('#input_company');
 const input_location = document.querySelector('#input_location');
@@ -8,9 +9,6 @@ const cards = document.querySelector('.cards');
 
 const btn_create = document.querySelector('#btn_create');
 
-//! event.preventdefault() ya no funciona, ya que no usamos
-//! un formulario, sino un botón. Hay que ver la manera de
-//! evitar que se lance el post sin tener los datos en los input.
 // Renderizamos en la vista los trabajos que están
 // alojados en la BD
 
@@ -200,29 +198,45 @@ btn_create.addEventListener('click', (event) => {
                 url: input_url.value
             })
         });
-        const data = await response.json();
-        return data;
+        if(response.status === 200){
+
+            const data = await response.json();
+            return data;
+        }else{
+            return "empty"
+        }
+
+        
     }
     // Renderizamos el nuevo empleo en la vista
     (async () => {
         const newJob = await getData()
-
-        // Lanzamos un alert cuando se crea el nuevo trabajo
-        Swal.fire(
-            `${newJob.jobTitle}`,
-            'añadido a la BD',
-            'success'
-        )
-        // Pintamos el nuevo trabajo
-        paintCard(newJob);
-
-        // Limpiamos los inputs
-        input_title.value = "";
-        input_company.value = "";
-        input_location.value = "";
-        input_date.value = "";
-        input_image.value = "";
-        input_url.value = "";
+        if(newJob !== "empty"){
+            // Lanzamos un alert cuando se crea el nuevo trabajo
+            Swal.fire(
+                `${newJob.jobTitle}`,
+                'añadido a la BD',
+                'success'
+            )
+            // Pintamos el nuevo trabajo
+            paintCard(newJob);
+    
+            // Limpiamos los inputs
+            input_title.value = "";
+            input_company.value = "";
+            input_location.value = "";
+            input_date.value = "";
+            input_image.value = "";
+            input_url.value = "";
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Revisa el formulario',
+                text: 'Recuerda que debes rellenar todos los campos'
+            })
+        }
+      
+        
     })()
 
 })

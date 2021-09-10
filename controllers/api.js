@@ -43,14 +43,11 @@ const api = {
             const surname = await req.body.surname
             const email = await req.body.email
             const password = bcryptjs.hashSync(await req.body.password, 8)
-
             const newUser = await createUser(name, surname, email, password);
-            
-            if (newUser.rowCount) {
+            if(newUser){
                 res.sendStatus(201);
-            } else {
-                res.sendStatus(400);
             }
+
         } catch (error) {
             res.status(400).json({
                 error: error.message

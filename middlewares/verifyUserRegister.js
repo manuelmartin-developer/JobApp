@@ -13,7 +13,7 @@ isEmptyRegister = (req, res, next) => {
     }
     next();
 };
-isValidEmail = (req, res, next) => {
+isValidEmailRegister = (req, res, next) => {
     const email = req.body.email;
     const regEx = /\S+@\S+\.\S+/;
     if(!regEx.test(email)){
@@ -25,10 +25,9 @@ isValidEmail = (req, res, next) => {
 
 checkDuplicateEmail = (req, res, next) => {
     
-    
     User.getUser(req.body.email)
     .then(user => {
-        if(user){
+        if(user.length !== 0){
             res.sendStatus(400);
             return;
         };
@@ -38,7 +37,7 @@ checkDuplicateEmail = (req, res, next) => {
   };
 validatePassword = (req, res, next) => {
     const password = req.body.password;
-    // Intentar con regex
+    //! Intentar con regex
     if (password.length < 6) {
         res.sendStatus(409)
         return;
@@ -48,7 +47,7 @@ validatePassword = (req, res, next) => {
 
   const verifySignUp = {
     checkDuplicateEmail,
-    isValidEmail,
+    isValidEmailRegister,
     validatePassword,
     isEmptyRegister
   };

@@ -30,13 +30,25 @@ btn_login_user.addEventListener('click', () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Opss...',
-                text: 'El email no es correcto'
+                text: 'No existe ningún usuario con ese email'
             })
         } else if (response.status === 401) {
             Swal.fire({
                 icon: 'error',
                 title: 'Revisa la contraseña',
                 text: 'La contraseña es incorrecta'
+            })
+        }else if (response.status === 411) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Revisa los campos',
+                text: 'No puede haber ningún campo vacío'
+            })
+        } else if (response.status === 406) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Revisa el email',
+                text: 'El formato del email no es correcto'
             })
         }
     })()

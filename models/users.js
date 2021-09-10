@@ -5,7 +5,7 @@ const createUser = async (name, surname, email, password) => {
 
   try {
     const response = await pool.query('INSERT INTO users (name, surname, email, password) VALUES ($1, $2, $3, $4)', [name, surname, email, password])
-    return response;
+    return response.rowCount;
   } catch (err) {
     console.log(err.stack)
   }

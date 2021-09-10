@@ -14,9 +14,10 @@ html(lang="en")
             label(for="email") Email
             input(type="text" name="email" id="input_email") 
             label(for="password") Password
-            #pass_container
+            .pass_container
                 input(type="password" name="password" id="input_password") 
                 i(id="togglePassword" class="fas fa-eye-slash")
             input(type="submit", value="Sign in" id="btn_login_user")
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/login_user.js")
+        script(src="utils/toggle_password.js")

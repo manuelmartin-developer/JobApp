@@ -33,6 +33,8 @@ const btn_create = document.querySelector('#btn_create');
         const date = card.querySelector('.infoCard > h4:nth-child(4)').innerText;
         const image = card.querySelector('.imageCard > img').src;
 
+        const buttons = document.createElement('div');
+        buttons.setAttribute('class', 'buttons');
         const editButton = document.createElement('button');
         editButton.setAttribute("id", url)
         const iconEdit = document.createElement('i');
@@ -45,8 +47,9 @@ const btn_create = document.querySelector('#btn_create');
         iconDelete.setAttribute('class', 'far fa-trash-alt');
         deleteButton.appendChild(iconDelete);
 
-        card.appendChild(editButton);
-        card.appendChild(deleteButton);
+        buttons.appendChild(editButton);
+        buttons.appendChild(deleteButton);
+        card.appendChild(buttons);
 
         editButton.addEventListener('click', () => {
 
@@ -114,24 +117,15 @@ const btn_create = document.querySelector('#btn_create');
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        card.innerHTML = `<div class="infoCard"> 
-                                                <a href="${newUrl}" target="_blank">
+                        const infoCard = card.querySelector('.infoCard');
+                        const imageCard = card.querySelector('.imageCard');
+                        infoCard.innerHTML = `<a href="${newUrl}" target="_blank">
                                                     <h3>${newTitle}</h3>
                                                 </a>
                                                 <h4>${newCompany}</h4>
                                                 <h4>${newLocation}</h4>
-                                                <h4>${newDate}</h4>
-                                            </div>
-                                            <div class="imageCard">
-                                                <img src="${newImage}">
-                                            </div>
-                                            <button id="${newUrl}">
-                                                <i class="far fa-edit" aria-hidden="true"></i>
-                                            </button>
-                                            <button id="${newUrl}">
-                                                <i class="far fa-trash-alt" aria-hidden="true"></i>
-                                            </button>`
-                        
+                                                <h4>${newDate}</h4>`
+                        imageCard.innerHTML = `<img src="${newImage}">`                        
 
                     })();
                 }

@@ -1,8 +1,8 @@
 const btn_create_user = document.querySelector('#btn_create_user')
-const input_name = document.querySelector('#name')
-const input_surname = document.querySelector('#surname')
-const input_email = document.querySelector('#email')
-const input_password = document.querySelector('#password')
+const input_name = document.querySelector('#input_name')
+const input_surname = document.querySelector('#input_surname')
+const input_email = document.querySelector('#input_email')
+const input_password = document.querySelector('#input_password')
 
 btn_create_user.addEventListener('click', () => {
     (async () => {

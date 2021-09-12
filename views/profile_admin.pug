@@ -1,0 +1,22 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Perfil
+    body
+        include ./admin_menu.pug 
+        .container 
+            label(for="name") Nombre
+            input(type="text" name="name" id="input_name" value=data[0].name)
+            label(for="surname") Apellido
+            input(type="text" name="surname" id="input_surname" value=data[0].surname)  
+            label(for="email") Email
+            input(type="text" name="email" id="input_email" value=data[0].email)
+            input(type="submit", value="Modificar usuario" id="btn_update_user")
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/profile_user_admin.js")

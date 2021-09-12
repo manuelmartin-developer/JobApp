@@ -23,7 +23,7 @@ btn_login_user.addEventListener('click', () => {
                 text: 'Ahora estás logueado',
             }).then(okay => {
                 if (okay) {
-                    window.location.href = '/profile'
+                    window.location.href = '/'
                 }
             })
         } else if (response.status === 400) {

@@ -7,12 +7,10 @@ nav(role='navigation')
     ul#menu
         a(href='/')
             li Home
+        a(href='/favorites')
+            li Favorites
         a(href='/profile')
             li Profile
-        a(href='/users')
-            li Users
-        a(href='/dashboard')
-            li Dashboard
         form(action="/api/logout", method="post")
             li
                 input(type="submit", value="LogOut")

@@ -6,10 +6,13 @@ const {
     scraperWelcome
 } = require('../utils/scraper_welcome');
 const {
-    createUser
+    createUser, getUser, updateAnUser, deleteOneUser, createFavorite, deleteOneFavorite, getAllUserFavorites
 } = require('../models/users')
 
 const bcryptjs = require('bcryptjs');
+const jwt = require('jsonwebtoken')
+const generateToken = require('../middlewares/generateToken');
+const { restart } = require('nodemon');
 
 const api = {
 
@@ -34,17 +37,14 @@ const api = {
             });
         }
     },
-
-
     postUser: async (req, res) => {
-
         try {
             const name = await req.body.name
             const surname = await req.body.surname
             const email = await req.body.email
             const password = bcryptjs.hashSync(await req.body.password, 8)
             const newUser = await createUser(name, surname, email, password);
-            if(newUser){
+            if (newUser) {
                 res.sendStatus(201);
             }
 
@@ -56,31 +56,64 @@ const api = {
 
     },
     logInUser: async (req, res) => {
-        res.status(200).json('Login User')
+        try {
+            const user = await getUser(req.body.email)
+            const email = user[0].email
+            const user_id = user[0].user_id
+            await generateToken(res, user_id, email)
+            res.sendStatus(200)
+        }
+        catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     logOutUser: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const token = req.headers['cookie'];
+            jwt.sign(token, "", {
+                expires: 1
+            }, (logout, err) => {
+                if (logout) {
+                    res.cookie('token', token, {
+                        expires: new Date(Date.now()),
+                        secure: false,
+                        httpOnly: true,
+                    });
+
+                    res.status(201).redirect('/');
+                } else {
+                    res.send({
+                        msg: 'Error'
+                    });
+                }
+            });
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     postJob: async (req, res) => {
 
-            try {
-                const job = await new Jobs({
-                    jobTitle: req.body.title,
-                    jobCompany: req.body.company,
-                    jobLocation: req.body.location,
-                    jobDate: req.body.date,
-                    jobImg: req.body.image,
-                    jobUrl: req.body.url
-                });
-                const newJob = await job.save();
-                res.status(200).json(newJob);
+        try {
+            const job = await new Jobs({
+                jobTitle: req.body.title,
+                jobCompany: req.body.company,
+                jobLocation: req.body.location,
+                jobDate: req.body.date,
+                jobImg: req.body.image,
+                jobUrl: req.body.url
+            });
+            const newJob = await job.save();
+            res.status(200).json(newJob);
 
-            } catch (error) {
-                res.status(400).json({
-                    error: error.message
-                });
-            }
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     getAllJobs: async (req, res) => {
         try {
@@ -93,13 +126,58 @@ const api = {
         }
     },
     addFavorite: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const jobOffer = await req.body;
+
+            let email;
+            const header = req.headers["cookie"];
+            const token = header.slice(6);
+            jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+                email = decoded.email;
+            });
+
+            const newFavorite = await createFavorite(jobOffer, email);
+            if (newFavorite) {
+                res.sendStatus(201);
+            } else {
+                res.sendStatus(400);
+            }
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    getAllFavorites: async (req, res) => {
+        try {
+            let email;
+            const header = req.headers["cookie"];
+            const token = header.slice(6);
+            jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+                email = decoded.email;
+            });
+            const favorites = await getAllUserFavorites(email)
+            res.status(200).json(favorites);
+        } catch (error) {
+
+        }
     },
     //! PUT
     updateUser: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const newFields = req.body;
+            const userToUpdate = await updateAnUser(newFields.newName, newFields.newSurname, newFields.newEmail, newFields.oldEmail);
+            if (userToUpdate) {
+                return res.sendStatus(201)
+            } else {
+                return res.sendStatus(400)
+            }
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+
     },
     updateJob: async (req, res) => {
         try {
@@ -117,8 +195,15 @@ const api = {
     },
     //! DELETE
     deleteUser: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const email = await req.body.email;
+            const userToDelete = await deleteOneUser(email);
+            res.status(200).json(userToDelete)
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
     deleteJob: async (req, res) => {
         try {
@@ -134,8 +219,19 @@ const api = {
         }
     },
     deleteFavorite: async (req, res) => {
-        // ...
-        res.status(200).render('api')
+        try {
+            const id = await req.body.id;
+            const favToDelete = await deleteOneFavorite(id);
+            if (favToDelete) {
+                res.sendStatus(200)
+            } else {
+                res.sendStatus(400)
+            }
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
     },
 }
 

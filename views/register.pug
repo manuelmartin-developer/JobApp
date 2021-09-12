@@ -13,17 +13,19 @@ html(lang="en")
         include ./guest_menu.pug
         .container
             label(for="name") Name
-            input(type="text" name="name" id="name" required)
+            input(type="text" name="name" id="input_name")
             label(for="surname") Surname
-            input(type="text" name="surname" id="surname" required)  
+            input(type="text" name="surname" id="input_surname")  
             label(for="email") Email
-            input(type="text" name="email" id="email" required) 
+            input(type="text" name="email" id="input_email") 
             label(for="password") Password
             .pass_container
-                input(type="password" name="password" id="password" required) 
+                input(type="password" name="password" id="input_password") 
                 i(id="togglePassword" class="fas fa-eye-slash")
             input(type="submit", value="Register User" id="btn_create_user")
 
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/register_user.js")
+        script(src="utils/toggle_password.js")
+
             

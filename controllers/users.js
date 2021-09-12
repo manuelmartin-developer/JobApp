@@ -1,8 +1,9 @@
+const { getAllUsers } = require("../models/users")
 
 const users = {
     home: async (req, res) => {
         // ...
-        res.status(200).render('home')
+        res.status(200).render('home_guest')
     },
     signUp: async (req, res) => {
         // ...
@@ -21,8 +22,8 @@ const users = {
         res.status(200).render('profile')
     },
     getUsers: async (req, res) => {
-        // ...
-        res.status(200).render('users')
+        const users = await getAllUsers()
+        res.status(200).render('users', { users })
     },
     getDashboard: async (req, res) => {
         res.status(200).render('dashboard')

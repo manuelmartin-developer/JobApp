@@ -1,0 +1,21 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title JobApp
+    body
+        include ./admin_menu.pug
+        p=data[0].role
+        .container
+            button(id="btn_users")
+                i(class="fas fa-users" onclick="window.location.href='/users'")
+            button(id="btn_dashboard")
+                i(class="fas fa-tachometer-alt" onclick="window.location.href='/dashboard'")
+        .cards
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")

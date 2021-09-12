@@ -10,7 +10,7 @@ btn_update_user.addEventListener('click', () => {
     (async function () {
         const editValues = await Swal.fire({
             title: '¿Estás seguro?',
-            text: "Ten en cuenta que si modificas tu email tendrás que volver a iniciar sesión",
+            text: "Si modificas el email, cambiarán tus datos de acceso",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -34,7 +34,6 @@ btn_update_user.addEventListener('click', () => {
                         })
                     });
                     if (response.status = 201) {
-
                         Swal.fire({
                             position: 'center',
                             icon: 'success',
@@ -42,11 +41,6 @@ btn_update_user.addEventListener('click', () => {
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        //! Ver problema con el cambio de mail en el token
-                        if (oldEmail !== newEmail) {
-                            document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; domain='localhost'; path=/;";
-                           window.location.href='/';
-                        }
                     } else {
                         Swal.fire({
                             position: 'center',

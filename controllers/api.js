@@ -6,13 +6,21 @@ const {
     scraperWelcome
 } = require('../utils/scraper_welcome');
 const {
-    createUser, getUser, updateAnUser, deleteOneUser, createFavorite, deleteOneFavorite, getAllUserFavorites
+    createUser,
+    getUser,
+    updateAnUser,
+    deleteOneUser,
+    createFavorite,
+    deleteOneFavorite,
+    getAllUserFavorites
 } = require('../models/users')
 
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const generateToken = require('../middlewares/generateToken');
-const { restart } = require('nodemon');
+const {
+    restart
+} = require('nodemon');
 
 const api = {
 
@@ -62,8 +70,7 @@ const api = {
             const user_id = user[0].user_id
             await generateToken(res, user_id, email)
             res.sendStatus(200)
-        }
-        catch (error) {
+        } catch (error) {
             res.status(400).json({
                 error: error.message
             });
@@ -168,7 +175,13 @@ const api = {
             const newFields = req.body;
             const userToUpdate = await updateAnUser(newFields.newName, newFields.newSurname, newFields.newEmail, newFields.oldEmail);
             if (userToUpdate) {
-                return res.sendStatus(201)
+                if(newFields.newEmail !== newFields.oldEmail){
+                    const user = await getUser(newFields.newEmail)
+                    const email = user[0].email
+                    const user_id = user[0].user_id
+                    await generateToken(res, user_id, email)
+                    return res.sendStatus(201)
+                }
             } else {
                 return res.sendStatus(400)
             }

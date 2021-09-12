@@ -11,7 +11,8 @@ const app = express()
 const port = process.env.PORT
 
 // Uso de archivos estáticos
-app.use(express.static('public'))
+app.use("/public", express.static(path.join(__dirname, 'public')));
+
 app.use("/utils", express.static(path.join(__dirname, 'utils')));
 
 // Motor de vistas

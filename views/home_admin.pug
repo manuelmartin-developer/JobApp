@@ -11,7 +11,8 @@ html(lang="es")
         title JobApp
     body
         include ./admin_menu.pug
-        p=data[0].role
+        .logo 
+            img(src="/public/assets/images/logo.png" height="150px")
         .container
             button(id="btn_users")
                 i(class="fas fa-users" onclick="window.location.href='/users'")

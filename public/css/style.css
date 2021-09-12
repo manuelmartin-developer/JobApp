@@ -14,22 +14,33 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 70%;
-    margin-top: 30%;
+    margin-top: 30px;
 }
 
 .input,.button{
     width: 100%;
 }
-
-.card{
+.cards{
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 90%;
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     justify-content: center;
     width: 100%;
-    background-color: lightgray;
     margin: 5px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+.imageCard>img{
+
+    height: 50px;
+    border-radius: 24px;
 }
 .one_job{
     display: flex;
@@ -40,7 +51,7 @@ body{
     margin: 10px;
     border-radius: 20px;
     box-shadow: 2px 2px lightgray;
-    border: 1px solid grey;
+    border: 0.5px solid grey;
 }
 .one_job>img{
     height: 50px;
@@ -48,9 +59,7 @@ body{
     border-radius: 25px;
     padding: 5px 0;
 }
-.cards>div {
-    background-color: cadetblue;
-}
+
 
 #btn_top {
 	display: none;
@@ -66,3 +75,4 @@ body{
 	font-size: 2rem;
 	opacity: 0.80;
 }
+

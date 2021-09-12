@@ -11,6 +11,8 @@ for (let user of users) {
     const surname = user.querySelector('#user_surname').innerText;
     const email = user.querySelector('#user_email').innerText;
 
+    const buttons = document.createElement('div');
+    buttons.setAttribute('class', 'buttons');
     const editButton = document.createElement('button');
     editButton.setAttribute("id", email)
     const iconEdit = document.createElement('i');
@@ -22,8 +24,9 @@ for (let user of users) {
     iconDelete.setAttribute('class', 'far fa-trash-alt');
     deleteButton.appendChild(iconDelete);
 
-    user.appendChild(editButton);
-    user.appendChild(deleteButton);
+    buttons.appendChild(editButton);
+    buttons.appendChild(deleteButton);
+    user.appendChild(buttons)
 
     editButton.addEventListener('click', () => {
         (async function () {
@@ -34,7 +37,7 @@ for (let user of users) {
                     `<label id="swal-label2" class="swal1-label">Apellido</label><br>` +
                     `<input id="swal-input2" class="swal1-input" value="${surname}"><br>` +
                     `<label id="swal-label2" class="swal1-label">Email</label><br>` +
-                    `<input id="swal-input3" class="swal1-input" value="${email}"><br>`,
+                    `<input id="swal-input3" class="swal1-input" value="${email}" disabled><br>`,
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
@@ -78,17 +81,10 @@ for (let user of users) {
                             showConfirmButton: false,
                             timer: 2000
                           })
-                        user.innerHTML = `<div class="one_user">
-                                            <p id="user_name">${newName}</p>
+                        const user_info = user.querySelector('.user_info');
+                        user_info.innerHTML = `<p id="user_name">${newName}</p>
                                             <p id="user_surname">${newSurname}</p>
-                                            <p id="user_email">${newEmail}</p>
-                                            <button id="${newEmail}">
-                                                <i class="far fa-edit" aria-hidden="true"></i>
-                                            </button>
-                                            <button id="${newEmail}">
-                                            <i class="far fa-trash-alt" aria-hidden="true"></i>
-                                            </button>
-                                            </div>`
+                                            <p id="user_email">${newEmail}</p>`
                     }else{
                         Swal.fire({
                             position: 'center',

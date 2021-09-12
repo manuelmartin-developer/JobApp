@@ -182,6 +182,7 @@ const api = {
                     await generateToken(res, user_id, email)
                     return res.sendStatus(201)
                 }
+                res.sendStatus(201)
             } else {
                 return res.sendStatus(400)
             }

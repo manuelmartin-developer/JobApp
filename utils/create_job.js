@@ -107,12 +107,14 @@ const btn_create = document.querySelector('#btn_create');
                                 jobUrl: newUrl
                             })
                         });
-                        Swal.fire(
-                            'Oferta editada',
-                            'success'
-                        )
-                        card.innerHTML = `<div class="card">
-                                            <div class="infoCard"> 
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'Se han guardado los nuevos datos',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
+                        card.innerHTML = `<div class="infoCard"> 
                                                 <a href="${newUrl}" target="_blank">
                                                     <h3>${newTitle}</h3>
                                                 </a>
@@ -128,8 +130,7 @@ const btn_create = document.querySelector('#btn_create');
                                             </button>
                                             <button id="${newUrl}">
                                                 <i class="far fa-trash-alt" aria-hidden="true"></i>
-                                            </button>
-                                        </div>`
+                                            </button>`
                         
 
                     })();
@@ -165,11 +166,13 @@ const btn_create = document.querySelector('#btn_create');
                                 url: deleteButton.id
                             })
                         });
-                        Swal.fire(
-                            'Borrado!',
-                            'El trabajo ha sido borrado de la DB',
-                            'success'
-                        )
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: 'La oferta ha sido borrada de la DB',
+                            showConfirmButton: false,
+                            timer: 2000
+                        })
                         card.remove();
                     })();
 

@@ -26,9 +26,10 @@ html(lang="es")
             .list_users
                 each user in users
                     .one_user
-                        p#user_name=user.name
-                        p#user_surname=user.surname
-                        p#user_email=user.email
+                        .user_info
+                            p#user_name=user.name
+                            p#user_surname=user.surname
+                            p#user_email=user.email
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/register_user_admin.js")
         script(src="utils/toggle_password.js")

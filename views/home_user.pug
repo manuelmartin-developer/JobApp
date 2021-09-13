@@ -12,13 +12,15 @@ html(lang="en")
     body
         include ./users_menu.pug
         .logo 
-            img(src="/public/assets/images/logo.png" height="150px")
+            img(src="/public/assets/images/logo.png")
         .container
-            input.input(id="input_search", type="text", name="search")
-            button.button(id="btn_search") Search
-        button(onclick="topFunction()" id="btn_top")
-                i(class="fas fa-chevron-circle-up")
-        .cards
+            .search
+                input.input(id="input_search", type="text", name="search")
+                button.button(id="btn_search")
+                    i(class="fas fa-search")
+            .cards
+            button(onclick="topFunction()" id="btn_top")
+                    i(class="fas fa-chevron-circle-up")
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/paint_card.js")
         script(src="utils/render_jobs_home_user.js")

@@ -148,7 +148,18 @@
 }
 #menu>a>li{
   margin-bottom: 5px;
+
 }
-#menu>a>li:hover{
-  color: #B73225;
+#menu>a{
+  text-decoration: none;
+  color: black;
 }
+#menu > form > li > input{
+  font-size: 1rem;
+  color: orange;
+}
+#menu>a:visited{
+  text-decoration: none;
+  color: black;
+}
+

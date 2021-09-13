@@ -174,14 +174,25 @@ const api = {
         try {
             const newFields = req.body;
             const userToUpdate = await updateAnUser(newFields.newName, newFields.newSurname, newFields.newEmail, newFields.oldEmail);
+            //Comprobar email de la cookie
             if (userToUpdate) {
-                if(newFields.newEmail !== newFields.oldEmail){
-                    const user = await getUser(newFields.newEmail)
-                    const email = user[0].email
-                    const user_id = user[0].user_id
-                    await generateToken(res, user_id, email)
-                    return res.sendStatus(201)
+                let cookieEmail;
+                const header = req.headers["cookie"];
+                const token = header.slice(6);
+                jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+                    cookieEmail = decoded.email;
+                });
+                if (newFields.newEmail !== newFields.oldEmail) {
+                    const user = await getUser(newFields.newEmail);
+                    if (cookieEmail !== newFields.oldEmail) {
+                        return res.sendStatus(201);
+                    }
+                    const email = user[0].email;
+                    const user_id = user[0].user_id;
+                    await generateToken(res, user_id, email);
+                    return res.sendStatus(201);
                 }
+
                 res.sendStatus(201)
             } else {
                 return res.sendStatus(400)

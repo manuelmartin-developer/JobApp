@@ -37,7 +37,7 @@ for (let user of users) {
                     `<label id="swal-label2" class="swal1-label">Apellido</label><br>` +
                     `<input id="swal-input2" class="swal1-input" value="${surname}"><br>` +
                     `<label id="swal-label2" class="swal1-label">Email</label><br>` +
-                    `<input id="swal-input3" class="swal1-input" value="${email}" disabled><br>`,
+                    `<input id="swal-input3" class="swal1-input" value="${email}" ><br>`,
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',

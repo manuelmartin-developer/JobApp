@@ -10,7 +10,9 @@ html(lang="es")
             include ../public/css/menu.css
         title Dashboard
     body
-        include ./admin_menu.pug 
+        include ./admin_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png") 
         .container
             label(for="title") Título
             input(type="text" name="title" id="input_title" placeholder="Introduce Título")

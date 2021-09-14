@@ -9,7 +9,9 @@ html(lang="es")
             include ../public/css/menu.css
         title Perfil
     body
-        include ./admin_menu.pug 
+        include ./admin_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png") 
         .container 
             label(for="name") Nombre
             input(type="text" name="name" id="input_name" value=data[0].name)

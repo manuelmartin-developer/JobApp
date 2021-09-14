@@ -1,13 +1,31 @@
 *{
     margin: 0;
     padding: 0;
+    font-family: Arial, Helvetica, sans-serif
 }
 
 body{
+    width: 99vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
+}
+.logo{
+    width: 100vw;
+    height: 100px;
+    background-color: #F7BF4F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.logo > img {
+    width: 50%;
+    object-fit: scale-down;
 }
 
 .container{
@@ -15,28 +33,77 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 70%;
-    margin-top: 30px;
+    width: 80%;
+    margin-top: 180px;
 }
 
-.input,.button{
+.input, .button{
     width: 100%;
+}
+.search{
+    display: flex;
+    position: relative;
+}
+.info_search{
+    margin: 20px 0;
+}
+#input_search{
+    height: 30px;
+    margin: 0;
+    padding-left: 30px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 5px;
+}
+#btn_search{
+    position: absolute;
+    bottom: 7px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: none;
 }
 .cards{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 90%;
+    width: 100%;
 }
 .card{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
     width: 100%;
+ 
     margin: 5px;
     border-radius: 15px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;}
+
+    .swal2-popup {
+        font-size: 1rem !important;
+        font-family: Verdana;
+      }
+
+ .infoCard{
+     width: 80%;
+     margin-left: 10px;
+ }     
+ .imageCard{
+     width: 20%;
+ }
+.infoCard > a{
+    text-decoration: none;
+}    
+.title{
+    font-size: 1.2rem;
+    color: #495057;
+}
+.company, .location, .date{
+    font-size: 0.8rem;
+    color: #495057;
+}    
+
 .imageCard>img{
 
     height: 50px;
@@ -70,7 +137,7 @@ body{
 	border: none;
 	outline: none;
 	background-color: transparent;
-	color: #F0AD02;
+	color: #F7BF4F;
 	cursor: pointer;
 	font-size: 2rem;
 	opacity: 0.80;

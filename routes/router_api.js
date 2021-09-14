@@ -5,13 +5,24 @@ const { isEmptyRegister, isValidEmailRegister, checkDuplicateEmail, validatePass
 const { isEmptyAddJob } = require('../middlewares/verifyAddJob');
 const { checkEmailAndPassword, isEmptyLogin, isValidEmailLogin } = require('../middlewares/verifyUserLogin')
 const { verifyToken, isAdmin } = require('../middlewares/authJwt')
+const passport = require('passport')
+require('../middlewares/passport_setup')
 
 
 // GET
 router.get('/search', api.searchJob)
 router.get('/favorites', verifyToken, api.getAllFavorites)
 router.get('/ads', verifyToken, isAdmin, api.getAllJobs)//! ONLY ADMIN
+// GOOGLE OAUTH20
+router.get('/google',
+    passport.authenticate('google', { scope: ['profile', 'email'] }))
 
+router.get('/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function (req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/');
+    });
 // POST
 router.post('/user', isEmptyRegister, isValidEmailRegister, checkDuplicateEmail, validatePassword, api.postUser)
 router.post('/login', isEmptyLogin, isValidEmailLogin, checkEmailAndPassword, api.logInUser)

@@ -38,7 +38,6 @@ isAdmin = (req, res, next) => {
         })
 };
 verifyRoleHome = (req, res, next) => {
-
     if (!req.cookies.token) {
         next();
     } else {

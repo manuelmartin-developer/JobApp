@@ -5,7 +5,8 @@ const { isEmptyRegister, isValidEmailRegister, checkDuplicateEmail, validatePass
 const { isEmptyAddJob } = require('../middlewares/verifyAddJob');
 const { checkEmailAndPassword, isEmptyLogin, isValidEmailLogin } = require('../middlewares/verifyUserLogin')
 const { verifyToken, isAdmin } = require('../middlewares/authJwt')
-const passport = require('passport')
+const passport = require('passport');
+const generateToken = require('../middlewares/generateToken');
 require('../middlewares/passport_setup')
 
 
@@ -20,7 +21,9 @@ router.get('/google',
 router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
     function (req, res) {
-        // Successful authentication, redirect home.
+        if(req.user.user_id){
+            generateToken(res, req.user.user_id, req.user.email)
+        }
         res.redirect('/');
     });
 // POST

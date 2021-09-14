@@ -22,13 +22,11 @@ app.set('view engine', 'pug')
 app.set('views', './views')
 
 //Middlewares
+app.use(passport.initialize()); // Used to initialize passport
+app.use(passport.session()); // Used to persist login sessions
 app.use(express.json()) //Para convertir a JSON
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser());
-
-
-app.use(passport.initialize()); // Used to initialize passport
-app.use(passport.session()); // Used to persist login sessions
 
 app.use('/', router_web) // Web endpoints
 app.use('/api', router_api) // API endpoints

@@ -23,7 +23,6 @@ const {
 } = require('nodemon');
 
 const api = {
-
     searchJob: async (req, res) => {
         try {
             const query = req.query.query;
@@ -68,8 +67,8 @@ const api = {
             const user = await getUser(req.body.email)
             const email = user[0].email
             const user_id = user[0].user_id
-            await generateToken(res, user_id, email)
-            res.sendStatus(200)
+            const token = await generateToken(res, user_id, email)
+            res.status(200).json(token)
         } catch (error) {
             res.status(400).json({
                 error: error.message
@@ -78,7 +77,7 @@ const api = {
     },
     logOutUser: async (req, res) => {
         try {
-            const token = req.headers['cookie'];
+            const token = req.cookies.token;
             jwt.sign(token, "", {
                 expires: 1
             }, (logout, err) => {
@@ -137,8 +136,7 @@ const api = {
             const jobOffer = await req.body;
 
             let email;
-            const header = req.headers["cookie"];
-            const token = header.slice(6);
+            const token = req.cookies.token
             jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                 email = decoded.email;
             });
@@ -158,8 +156,7 @@ const api = {
     getAllFavorites: async (req, res) => {
         try {
             let email;
-            const header = req.headers["cookie"];
-            const token = header.slice(6);
+            const token = req.cookies.token;
             jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                 email = decoded.email;
             });
@@ -177,8 +174,7 @@ const api = {
             //Comprobar email de la cookie
             if (userToUpdate) {
                 let cookieEmail;
-                const header = req.headers["cookie"];
-                const token = header.slice(6);
+                const token = req.cookies.token;
                 jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                     cookieEmail = decoded.email;
                 });

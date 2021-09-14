@@ -7,7 +7,7 @@ const { checkEmailAndPassword, isEmptyLogin, isValidEmailLogin } = require('../m
 const { verifyToken, isAdmin } = require('../middlewares/authJwt')
 const passport = require('passport');
 const generateToken = require('../middlewares/generateToken');
-require('../middlewares/passport_setup')
+require('../middlewares/passport_google_setup')
 
 
 // GET
@@ -20,6 +20,18 @@ router.get('/google',
 
 router.get('/google/callback',
     passport.authenticate('google', { failureRedirect: '/login' }),
+    function (req, res) {
+        if(req.user.user_id){
+            generateToken(res, req.user.user_id, req.user.email)
+        }
+        res.redirect('/');
+    });
+// GITHUB OAUTH20
+router.get('/github',
+    passport.authenticate('github'));
+
+router.get('/github/callback',
+    passport.authenticate('github', { failureRedirect: '/login' }),
     function (req, res) {
         if(req.user.user_id){
             generateToken(res, req.user.user_id, req.user.email)

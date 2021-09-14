@@ -5,7 +5,8 @@ require('./utils/sql_db') // Runs SQL Database with Postgres
 const path = require('path');
 const passport = require('passport')
 const cookieParser = require('cookie-parser');
-require('./middlewares/passport_setup')
+require('./middlewares/passport_google_setup')
+require('./middlewares/passport_github_setup')
 const router_web = require('./routes/router_web') // Retreive the web endpoints
 const router_api = require('./routes/router_api') // Retreive the API endpoints 
 

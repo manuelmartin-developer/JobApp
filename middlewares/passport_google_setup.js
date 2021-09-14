@@ -1,17 +1,9 @@
 const passport = require('passport')
 require('dotenv').config()
-const fetch = (...args) => import('node-fetch').then(({
-    default: fetch
-}) => fetch(...args));
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const {
     createUser,
-    getUser,
-    updateAnUser,
-    deleteOneUser,
-    createFavorite,
-    deleteOneFavorite,
-    getAllUserFavorites
+    getUser
 } = require('../models/users')
 
 // Crear una contraseña random para el usuario registrado con Google

@@ -48,9 +48,9 @@ const cards = document.querySelector('.cards');
         infoCard.appendChild(location)
         infoCard.appendChild(date)
 
-        jobCard.appendChild(infoCard)
         jobCard.appendChild(imageCard)
         jobCard.appendChild(deleteButton)
+        jobCard.appendChild(infoCard)
 
 
         cards.appendChild(jobCard);

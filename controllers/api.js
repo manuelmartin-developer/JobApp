@@ -18,9 +18,6 @@ const {
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const generateToken = require('../middlewares/generateToken');
-const {
-    restart
-} = require('nodemon');
 
 const api = {
     searchJob: async (req, res) => {
@@ -171,7 +168,6 @@ const api = {
         try {
             const newFields = req.body;
             const userToUpdate = await updateAnUser(newFields.newName, newFields.newSurname, newFields.newEmail, newFields.oldEmail);
-            //Comprobar email de la cookie
             if (userToUpdate) {
                 let cookieEmail;
                 const token = req.cookies.token;
@@ -188,7 +184,6 @@ const api = {
                     await generateToken(res, user_id, email);
                     return res.sendStatus(201);
                 }
-
                 res.sendStatus(201)
             } else {
                 return res.sendStatus(400)

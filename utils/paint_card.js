@@ -7,6 +7,7 @@ const paintCard = (job) => {
     imageCard.setAttribute('class', 'imageCard')
     const companyImage = document.createElement('img')
     companyImage.setAttribute('src', job.jobImg)
+    companyImage.setAttribute('class', 'image')
 
     // Create the Info Card (div > (a > h3) + h4 + h4 + h4)
     const infoCard = document.createElement('div')
@@ -16,11 +17,15 @@ const paintCard = (job) => {
     jobLink.setAttribute('target', '_blank')
     const title = document.createElement('h3')
     title.innerHTML = job.jobTitle
+    title.setAttribute('class', 'title')
     const company = document.createElement('h4')
+    company.setAttribute('class', 'company')
     company.innerHTML = job.jobCompany
     const location = document.createElement('h4')
+    location.setAttribute('class', 'location')
     location.innerHTML = job.jobLocation
     const date = document.createElement('h4')
+    date.setAttribute('class', 'date')
     date.innerHTML = job.jobDate
 
     imageCard.appendChild(companyImage)

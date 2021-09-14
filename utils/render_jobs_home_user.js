@@ -47,11 +47,6 @@ btn_search.addEventListener('click', () => {
         swal.close()
     })()
 })
-window.addEventListener('keyup', (e) => {
-    if (e.key === "Enter") {
-        btn_search.click();
-    }
-})
 
 const addfavBtn = ()=> {
     

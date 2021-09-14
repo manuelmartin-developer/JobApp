@@ -33,7 +33,6 @@ btn_search.addEventListener('click', () => {
         //Mostramos la cantidad de resultados de la búsqueda
         cards.innerHTML = "";
         const totalJobs = document.createElement('div')
-        totalJobs.setAttribute('class', 'info_search')
         totalJobs.innerHTML = `Hay ${data.length} elementos en la búsqueda               `
         cards.appendChild(totalJobs);
 
@@ -42,9 +41,4 @@ btn_search.addEventListener('click', () => {
         //Cerramos alert
         swal.close()
     })()
-})
-window.addEventListener('keyup', (e) => {
-    if (e.key === "Enter") {
-        btn_search.click();
-    }
 })

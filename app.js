@@ -3,7 +3,12 @@ require('dotenv').config()
 require('./utils/nosql_db') // Runs NOSQL Database with Mongoose
 require('./utils/sql_db') // Runs SQL Database with Postgres
 const path = require('path');
-
+const passport = require('passport')
+const cookieSession = require('cookie-session')
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+require('./passport_setup')
+const helmet = require('helmet');
 const router_web = require('./routes/router_web') // Retreive the web endpoints
 const router_api = require('./routes/router_api') // Retreive the API endpoints 
 
@@ -22,6 +27,17 @@ app.set('views', './views')
 //Middlewares
 app.use(express.json()) //Para convertir a JSON
 app.use(express.urlencoded({ extended: false }))
+app.use(cookieParser());
+app.use(cors());
+app.use(helmet()); //
+
+
+app.use(cookieSession({
+  name: 'jobapp-thebridge',
+  keys: ['key1', 'key2']
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', router_web) // Web endpoints
 app.use('/api', router_api) // API endpoints

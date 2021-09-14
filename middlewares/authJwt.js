@@ -3,11 +3,10 @@ require('dotenv').config()
 const User = require('../models/users')
 
 verifyToken = (req, res, next) => {
-    if (!req.headers['cookie']) {
+    if (!req.cookies.token) {
         return res.status(403).send('No token')
     }
-    const header = req.headers['cookie']
-    const token = header.slice(6)
+    const token = req.cookies.token
 
     if (!token) {
         return res.status(401).send('No token')
@@ -39,21 +38,17 @@ isAdmin = (req, res, next) => {
         })
 };
 verifyRoleHome = (req, res, next) => {
-
-    if (!req.headers["cookie"]) {
+    if (!req.cookies.token) {
         next();
     } else {
-        const header = req.headers["cookie"];
-        const token = header.slice(6);
+        const token = req.cookies.token;
         if (!token) {
             return res.status(401).send("No token");
         }
-
         jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
             if (err) {
                 return res.status(401).send("Invalid token");
             }
-
             req.userID = decoded.id;
             req.userEmail = decoded.email;
         });
@@ -76,12 +71,11 @@ verifyRoleHome = (req, res, next) => {
     }
 };
 verifyRoleProfile = (req, res, next) => {
-    if (!req.headers["cookie"]) {
+
+    if (!req.cookies.token) {
         next();
     } else {
-        const header = req.headers["cookie"];
-        const token = header.slice(6);
-
+        const token = req.cookies.token;
         if (!token) {
 
             return res.status(401).send("No token");

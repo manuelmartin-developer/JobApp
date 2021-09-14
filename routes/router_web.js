@@ -3,7 +3,7 @@ const users = require('../controllers/users')
 const { verifyToken, isAdmin, verifyRoleHome, verifyRoleProfile } = require('../middlewares/authJwt')
 
 // GET
-router.get('/', verifyRoleHome, users.home)
+router.get('/', users.home)
 router.get('/signup', users.signUp)
 router.get('/login', users.login)
 router.get('/favorites', verifyToken, users.getFavorites)

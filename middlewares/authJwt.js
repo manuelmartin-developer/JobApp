@@ -3,11 +3,10 @@ require('dotenv').config()
 const User = require('../models/users')
 
 verifyToken = (req, res, next) => {
-    if (!req.headers['cookie']) {
+    if (!req.cookies.token) {
         return res.status(403).send('No token')
     }
-    const header = req.headers['cookie']
-    const token = header.slice(6)
+    const token = req.cookies.token
 
     if (!token) {
         return res.status(401).send('No token')
@@ -40,11 +39,10 @@ isAdmin = (req, res, next) => {
 };
 verifyRoleHome = (req, res, next) => {
 
-    if (!req.headers["cookie"]) {
+    if (!req.cookies.token) {
         next();
     } else {
-        const header = req.headers["cookie"];
-        const token = header.slice(6);
+        const token = req.cookies.token;
         if (!token) {
             return res.status(401).send("No token");
         }
@@ -76,11 +74,10 @@ verifyRoleHome = (req, res, next) => {
     }
 };
 verifyRoleProfile = (req, res, next) => {
-    if (!req.headers["cookie"]) {
+    if (!req.cookies.token) {
         next();
     } else {
-        const header = req.headers["cookie"];
-        const token = header.slice(6);
+        const token = req.cookies.token;
 
         if (!token) {
 

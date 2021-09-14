@@ -75,7 +75,7 @@ const api = {
     },
     logOutUser: async (req, res) => {
         try {
-            const token = req.headers['cookie'];
+            const token = req.cookies.token;
             jwt.sign(token, "", {
                 expires: 1
             }, (logout, err) => {
@@ -134,8 +134,7 @@ const api = {
             const jobOffer = await req.body;
 
             let email;
-            const header = req.headers["cookie"];
-            const token = header.slice(6);
+            const token = req.cookies.token;
             jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                 email = decoded.email;
             });
@@ -155,8 +154,7 @@ const api = {
     getAllFavorites: async (req, res) => {
         try {
             let email;
-            const header = req.headers["cookie"];
-            const token = header.slice(6);
+            const token = req.cookies.token;
             jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                 email = decoded.email;
             });
@@ -173,8 +171,7 @@ const api = {
             const userToUpdate = await updateAnUser(newFields.newName, newFields.newSurname, newFields.newEmail, newFields.oldEmail);
             if (userToUpdate) {
                 let cookieEmail;
-                const header = req.headers["cookie"];
-                const token = header.slice(6);
+                const token = req.cookies.token;
                 jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
                     cookieEmail = decoded.email;
                 });

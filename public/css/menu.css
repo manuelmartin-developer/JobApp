@@ -1,4 +1,6 @@
-
+*{
+  font-family: monospace;
+}
 
 #menuToggle
 {
@@ -24,7 +26,7 @@
 
 #menuToggle input[type=submit]:hover
 {
-  color: #991E1E;
+  color: tomato;
 }
 
 
@@ -56,7 +58,7 @@
   margin-bottom: 5px;
   position: relative;
   
-  background: white;
+  background: #cdcdcd;
   border-radius: 3px;
   opacity: 90%;
   

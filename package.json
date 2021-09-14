@@ -32,10 +32,7 @@
     "mongoose": "^6.0.3",
     "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
-<<<<<<< HEAD
     "passport": "^0.4.1",
-=======
->>>>>>> 0784538b81e7b4e50a3ab4c01a7e5601f4b6f140
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.7.1",
     "pug": "^3.0.2",

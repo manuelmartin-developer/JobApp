@@ -36,8 +36,8 @@ app.use(cookieSession({
   name: 'jobapp-thebridge',
   keys: ['key1', 'key2']
 }))
-app.use(passport.initialize());
-app.use(passport.session());
+app.use(passport.initialize()); // Used to initialize passport
+app.use(passport.session()); // Used to persist login sessions
 
 app.use('/', router_web) // Web endpoints
 app.use('/api', router_api) // API endpoints

@@ -3,3 +3,6 @@ node_modules/
 
 #Git Ignore .env
 .env
+
+#package-lock
+package-lock.json

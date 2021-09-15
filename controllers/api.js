@@ -12,12 +12,15 @@ const {
     deleteOneUser,
     createFavorite,
     deleteOneFavorite,
-    getAllUserFavorites
+    getAllUserFavorites,
+    updatePassword
 } = require('../models/users')
 
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken')
 const generateToken = require('../middlewares/generateToken');
+const sendEmail = require("../utils/sendEmail");
+const passport = require('passport');
 
 const api = {
 
@@ -243,6 +246,55 @@ const api = {
                 res.sendStatus(200)
             } else {
                 res.sendStatus(400)
+            }
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    recoverPassword: async (req, res) => {
+        try {
+
+            const email = req.body.email;
+            const user = await getUser(email);
+            const user_id = user[0].user_id
+            if (!user){
+                return res.status(400).send("user with given email doesn't exist");
+            }
+            const token = jwt.sign({
+                user_id, email
+            }, process.env.JWT_KEY, {
+                expiresIn: '1d'
+            });
+
+            const link = `http://localhost:3000/resetpass/${user_id}/${token}`;
+            await sendEmail(email, "Password reset", link);
+            res.sendStatus(200)
+
+
+        } catch (error) {
+            res.status(400).json({
+                error: error.message
+            });
+        }
+    },
+    resetPassword: async (req, res) => {
+        try {
+
+            const reqPass = await req.body.pass1;
+            const password = bcryptjs.hashSync(reqPass, 8);
+
+            let email;
+            const token = req.cookies.token;
+
+            jwt.verify(token, process.env.JWT_KEY, (err, decoded) => {
+                email = decoded.email;
+            });
+            const user = await getUser(email);
+            const newPassword = await updatePassword(password, email);
+            if(newPassword){
+                res.sendStatus(200)
             }
         } catch (error) {
             res.status(400).json({

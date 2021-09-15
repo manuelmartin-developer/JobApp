@@ -38,6 +38,14 @@ const updateAnUser = async (newName, newSurname, newEmail, oldEmail) => {
   } catch (error) {
 
   }
+}//! Actualizar la password de un usuario
+const updatePassword = async (password, email) => {
+  try {
+    const response = await pool.query('UPDATE users SET password=$1 WHERE email=$2', [password, email]);
+    return response.rowCount
+  } catch (error) {
+
+  }
 }
 //! Borrar un usuario
 const deleteOneUser = async (email) => {
@@ -76,4 +84,4 @@ const deleteOneFavorite = async (id) => {
   }
 }
 
-module.exports = { createUser, getUser, getAllUsers, updateAnUser, deleteOneUser, createFavorite, getAllUserFavorites, deleteOneFavorite }
+module.exports = { createUser, getUser, getAllUsers, updateAnUser, deleteOneUser, createFavorite, getAllUserFavorites, deleteOneFavorite, updatePassword }

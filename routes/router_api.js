@@ -5,6 +5,8 @@ const { isEmptyRegister, isValidEmailRegister, checkDuplicateEmail, validatePass
 const { isEmptyAddJob } = require('../middlewares/verifyAddJob');
 const { checkEmailAndPassword, isEmptyLogin, isValidEmailLogin } = require('../middlewares/verifyUserLogin')
 const { verifyToken, isAdmin } = require('../middlewares/authJwt')
+const { isEmptyRecover, isValidEmailRecover, checkEmailRecover } = require('../middlewares/verifyRecoverPass')
+const { isEmptyReset, areBothPassEquals, areBothPassValid} = require('../middlewares/verifyResetPass')
 const passport = require('passport');
 const generateToken = require('../middlewares/generateToken');
 require('../middlewares/passport_google_setup')
@@ -44,6 +46,8 @@ router.post('/login', isEmptyLogin, isValidEmailLogin, checkEmailAndPassword, ap
 router.post('/logout', verifyToken, api.logOutUser)
 router.post('/ads', isEmptyAddJob, verifyToken, isAdmin, api.postJob) //! ONLY ADMIN
 router.post('/favorites', verifyToken, api.addFavorite)
+router.post('/recoverpass', isEmptyRecover, isValidEmailRecover, checkEmailRecover, api.recoverPassword)
+router.post('/resetpass', isEmptyReset, areBothPassEquals, areBothPassValid, api.resetPassword)
 
 // PUT
 router.put('/user', verifyToken, api.updateUser)

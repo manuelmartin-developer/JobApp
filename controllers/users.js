@@ -28,6 +28,13 @@ const users = {
     getDashboard: async (req, res) => {
         res.status(200).render('dashboard')
     },
+    recoverPass: async (req, res) => {
+        res.status(200).render('recover_pass')
+        
+    },
+    resetPass: async (req, res) => {
+        res.status(200).render('reset_pass'); 
+    },
 }
 
 module.exports = users

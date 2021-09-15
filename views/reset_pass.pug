@@ -1,0 +1,22 @@
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous") 
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Reset Pass
+    body
+        include ./guest_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png")
+        .container
+            label(for="pass") Introduce la nueva contraseña
+            input(type="text" name="pass1" id="input_pass1")
+            input(type="text" name="pass2" id="input_pass2")
+            input(type="submit", value="Cambiar contraseña" id="btn_pass")
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="/utils/reset_pass.js")
+            

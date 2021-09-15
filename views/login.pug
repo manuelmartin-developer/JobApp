@@ -12,6 +12,7 @@ html(lang="es")
         include ./guest_menu.pug
         .logo 
             img(src="/public/assets/images/logo.png")
+        .push
         .container
             label(for="email") Email
             input(type="text" name="email" id="input_email") 
@@ -20,9 +21,12 @@ html(lang="es")
                 input(type="password" name="password" id="input_password") 
                 i(id="togglePassword" class="fas fa-eye-slash")
             input(type="submit", value="Sign in" id="btn_login_user")
-            a(href="/api/google") ***Prueba Google***
-            a(href="/api/github") ***Prueba Github***
-            a(href="/recoverPass") ***Recuperar contraseña***
+            .buttonsSignIn
+                a(href="/api/google")
+                    img.buttonSignIn(src="/public/assets/images/signin_google.png", alt="login google")
+                a(href="/api/github")
+                    img.buttonSignIn(src="/public/assets/images/signin_github.png", alt="login github")
+                a(href="/recoverPass") Recuperar contraseña
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/login_user.js")
         script(src="utils/toggle_password.js")

@@ -32,7 +32,8 @@ btn_search.addEventListener('click', () => {
 
         //Mostramos la cantidad de resultados de la búsqueda
         cards.innerHTML = "";
-        const totalJobs = document.createElement('div')
+        const totalJobs = document.createElement('section')
+        totalJobs.setAttribute('class', 'totalJobs');
         totalJobs.innerHTML = `Hay ${data.length} elementos en la búsqueda               `
         cards.appendChild(totalJobs);
 
@@ -58,19 +59,21 @@ const addfavBtn = ()=> {
     const cards = document.querySelectorAll('.card')
     for(let card of cards){
         const title = card.querySelector('.infoCard > a > h3').innerText;
-        const company = card.querySelector('.infoCard > h4:nth-child(2)').innerText;
-        const location = card.querySelector('.infoCard > h4:nth-child(3)').innerText;
-        const date = card.querySelector('.infoCard > h4:nth-child(4)').innerText;
+        const company = card.querySelector('.infoCard2 > h4:nth-child(1)').innerText;
+        const location = card.querySelector('.infoCard2 > h4:nth-child(2)').innerText;
+        const date = card.querySelector('.infoCard2 > h4:nth-child(3)').innerText;
         const image = card.querySelector('.imageCard > img').src;
         const url = card.querySelector('a').href;
 
-
+        const buttonContainer = document.createElement('div');
+        buttonContainer.setAttribute('class', 'actionButton')
         const favButton = document.createElement('button');
         const iconEdit = document.createElement('i');
         iconEdit.setAttribute('class', 'far fa-heart');
         favButton.appendChild(iconEdit);
-    
-        card.appendChild(favButton);
+        
+        buttonContainer.appendChild(favButton)
+        card.appendChild(buttonContainer);
 
         favButton.addEventListener('click', () =>{
             (async function () {

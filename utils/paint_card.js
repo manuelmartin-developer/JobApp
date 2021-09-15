@@ -11,34 +11,37 @@ const paintCard = (job) => {
 
     // Create the Info Card (div > (a > h3) + h4 + h4 + h4)
     const infoCard = document.createElement('div')
+    const infoCard2 = document.createElement('div')
     infoCard.setAttribute('class', 'infoCard')
+    infoCard2.setAttribute('class', 'infoCard2')
     const jobLink = document.createElement('a')
     jobLink.setAttribute('href', job.jobUrl)
     jobLink.setAttribute('target', '_blank')
     const title = document.createElement('h3')
-    title.innerHTML = job.jobTitle
+    title.innerHTML = job.jobTitle.slice(0, 35)
     title.setAttribute('class', 'title')
     const company = document.createElement('h4')
     company.setAttribute('class', 'company')
-    company.innerHTML = job.jobCompany
+    company.innerHTML = `🏭 ${job.jobCompany}`
     const location = document.createElement('h4')
     location.setAttribute('class', 'location')
-    location.innerHTML = job.jobLocation
+    location.innerHTML = `📍 ${job.jobLocation}`
     const date = document.createElement('h4')
     date.setAttribute('class', 'date')
-    date.innerHTML = job.jobDate
+    date.innerHTML = `🕧 ${job.jobDate}`
 
     imageCard.appendChild(companyImage)
 
     jobLink.appendChild(title)
 
     infoCard.appendChild(jobLink)
-    infoCard.appendChild(company)
-    infoCard.appendChild(location)
-    infoCard.appendChild(date)
+    infoCard2.appendChild(company)
+    infoCard2.appendChild(location)
+    infoCard2.appendChild(date)
 
-    jobCard.appendChild(infoCard)
     jobCard.appendChild(imageCard)
+    infoCard.appendChild(infoCard2)
+    jobCard.appendChild(infoCard)
 
     cards.appendChild(jobCard);
 }

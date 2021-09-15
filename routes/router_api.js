@@ -1,12 +1,34 @@
 // Se corresponde con /controllers/api - CAMBIAR NOMBRES
 const router = require('express').Router();
 const api = require('../controllers/api')
-const { isEmptyRegister, isValidEmailRegister, checkDuplicateEmail, validatePassword } = require('../middlewares/verifyUserRegister');
-const { isEmptyAddJob } = require('../middlewares/verifyAddJob');
-const { checkEmailAndPassword, isEmptyLogin, isValidEmailLogin } = require('../middlewares/verifyUserLogin')
-const { verifyToken, isAdmin } = require('../middlewares/authJwt')
-const { isEmptyRecover, isValidEmailRecover, checkEmailRecover } = require('../middlewares/verifyRecoverPass')
-const { isEmptyReset, areBothPassEquals, areBothPassValid} = require('../middlewares/verifyResetPass')
+const {
+    isEmptyRegister,
+    isValidEmailRegister,
+    checkDuplicateEmail,
+    validatePassword
+} = require('../middlewares/verifyUserRegister');
+const {
+    isEmptyAddJob
+} = require('../middlewares/verifyAddJob');
+const {
+    checkEmailAndPassword,
+    isEmptyLogin,
+    isValidEmailLogin
+} = require('../middlewares/verifyUserLogin')
+const {
+    verifyToken,
+    isAdmin
+} = require('../middlewares/authJwt')
+const {
+    isEmptyRecover,
+    isValidEmailRecover,
+    checkEmailRecover
+} = require('../middlewares/verifyRecoverPass')
+const {
+    isEmptyReset,
+    areBothPassEquals,
+    areBothPassValid
+} = require('../middlewares/verifyResetPass')
 const passport = require('passport');
 const generateToken = require('../middlewares/generateToken');
 require('../middlewares/passport_google_setup')
@@ -15,15 +37,19 @@ require('../middlewares/passport_google_setup')
 // GET
 router.get('/search', api.searchJob)
 router.get('/favorites', verifyToken, api.getAllFavorites)
-router.get('/ads', verifyToken, isAdmin, api.getAllJobs)//! ONLY ADMIN
+router.get('/ads', verifyToken, isAdmin, api.getAllJobs) //! ONLY ADMIN
 // GOOGLE OAUTH20
 router.get('/google',
-    passport.authenticate('google', { scope: ['profile', 'email'] }))
+    passport.authenticate('google', {
+        scope: ['profile', 'email']
+    }))
 
 router.get('/google/callback',
-    passport.authenticate('google', { failureRedirect: '/login' }),
+    passport.authenticate('google', {
+        failureRedirect: '/login'
+    }),
     function (req, res) {
-        if(req.user.user_id){
+        if (req.user.user_id) {
             generateToken(res, req.user.user_id, req.user.email)
         }
         res.redirect('/');
@@ -33,9 +59,11 @@ router.get('/github',
     passport.authenticate('github'));
 
 router.get('/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login' }),
+    passport.authenticate('github', {
+        failureRedirect: '/login'
+    }),
     function (req, res) {
-        if(req.user.user_id){
+        if (req.user.user_id) {
             generateToken(res, req.user.user_id, req.user.email)
         }
         res.redirect('/');

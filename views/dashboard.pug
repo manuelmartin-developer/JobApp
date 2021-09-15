@@ -12,7 +12,8 @@ html(lang="es")
     body
         include ./admin_menu.pug
         .logo 
-            img(src="/public/assets/images/logo.png") 
+            img(src="/public/assets/images/logo.png")
+        .push 
         .container
             label(for="title") Título
             input(type="text" name="title" id="input_title" placeholder="Introduce Título")
@@ -26,7 +27,7 @@ html(lang="es")
             input(type="text" name="image" id="input_image" placeholder="Introduce URL Compañía") 
             label(for="url") Url oferta
             input(type="text" name="url" id="input_url" placeholder="Introduce URL Oferta") 
-            input(type="button", value="Crear Oferta" id="btn_create")
+            input(type="submit", value="Crear Oferta" id="btn_create")
             button(onclick="topFunction()" id="btn_top")
                 i(class="fas fa-chevron-circle-up")
         .cards

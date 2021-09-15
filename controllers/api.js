@@ -259,11 +259,12 @@ const api = {
             const email = req.body.email;
             const user = await getUser(email);
             const user_id = user[0].user_id
-            if (!user){
+            if (!user) {
                 return res.status(400).send("user with given email doesn't exist");
             }
             const token = jwt.sign({
-                user_id, email
+                user_id,
+                email
             }, process.env.JWT_KEY, {
                 expiresIn: '1d'
             });
@@ -293,7 +294,7 @@ const api = {
             });
             const user = await getUser(email);
             const newPassword = await updatePassword(password, email);
-            if(newPassword){
+            if (newPassword) {
                 res.sendStatus(200)
             }
         } catch (error) {

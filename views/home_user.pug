@@ -11,14 +11,15 @@ html(lang="en")
         title JobApp
     body
         include ./users_menu.pug
-        .logo 
+        header.logo 
             img(src="/public/assets/images/logo.png")
-        .container
-            .search
+        .push
+        main.container
+            section.search
                 input.input(id="input_search", type="text", name="search")
                 button.button(id="btn_search")
                     i(class="fas fa-search")
-            .cards
+            section.cards
             button(onclick="topFunction()" id="btn_top")
                     i(class="fas fa-chevron-circle-up")
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")

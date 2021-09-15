@@ -10,7 +10,7 @@ const cards = document.querySelector('.cards');
         // paintFavorite(JSON.parse(favorite.job_offer));
         // Create the Job Card (it will cointain 2 divs: Info and Image)
         const favorite = JSON.parse(data.job_offer)
-        const jobCard = document.createElement('div')
+        const jobCard = document.createElement('article')
         jobCard.setAttribute('class', 'card')
         // Create the Image Card (div > img)
         const imageCard = document.createElement('div')
@@ -20,37 +20,48 @@ const cards = document.querySelector('.cards');
 
         // Create the Info Card (div > (a > h3) + h4 + h4 + h4)
         const infoCard = document.createElement('div')
+        const infoCard2 = document.createElement('div')
         infoCard.setAttribute('class', 'infoCard')
+        infoCard2.setAttribute('class', 'infoCard2')
         const jobLink = document.createElement('a')
         jobLink.setAttribute('href', favorite.jobUrl)
         jobLink.setAttribute('target', '_blank')
         const title = document.createElement('h3')
+        title.setAttribute('class', 'title');
         title.innerHTML = favorite.jobTitle
         const company = document.createElement('h4')
-        company.innerHTML = favorite.JobCompany
+        company.setAttribute('class', 'company')
+        company.innerHTML = `${favorite.JobCompany}`
         const location = document.createElement('h4')
-        location.innerHTML = favorite.jobLocation
+        location.setAttribute('class', 'location')
+        location.innerHTML = `${favorite.jobLocation}`
         const date = document.createElement('h4')
-        date.innerHTML = favorite.jobDate
+        date.setAttribute('class', 'date')
 
+        date.innerHTML = `${favorite.jobDate}`
+
+        const buttonContainer = document.createElement('div');
+        buttonContainer.setAttribute('class', 'actionButton')
         const deleteButton = document.createElement('button');
         deleteButton.setAttribute("id", data.favorite_id)
         const iconDelete = document.createElement('i');
         iconDelete.setAttribute('class', 'far fa-trash-alt');
         deleteButton.appendChild(iconDelete);
 
+        buttonContainer.appendChild(deleteButton)
         imageCard.appendChild(companyImage)
 
         jobLink.appendChild(title)
 
         infoCard.appendChild(jobLink)
-        infoCard.appendChild(company)
-        infoCard.appendChild(location)
-        infoCard.appendChild(date)
+        infoCard2.appendChild(company)
+        infoCard2.appendChild(location)
+        infoCard2.appendChild(date)
 
+        infoCard.appendChild(infoCard2)
         jobCard.appendChild(imageCard)
-        jobCard.appendChild(deleteButton)
         jobCard.appendChild(infoCard)
+        jobCard.appendChild(buttonContainer)
 
 
         cards.appendChild(jobCard);

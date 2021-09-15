@@ -28,13 +28,13 @@ const btn_create = document.querySelector('#btn_create');
 
         const url = card.querySelector('a').href;
         const title = card.querySelector('.infoCard > a > h3').innerText;
-        const company = card.querySelector('.infoCard > h4:nth-child(2)').innerText;
-        const location = card.querySelector('.infoCard > h4:nth-child(3)').innerText;
-        const date = card.querySelector('.infoCard > h4:nth-child(4)').innerText;
+        const company = card.querySelector('.infoCard2 > h4:nth-child(1)').innerText;
+        const location = card.querySelector('.infoCard2 > h4:nth-child(2)').innerText;
+        const date = card.querySelector('.infoCard2 > h4:nth-child(3)').innerText;
         const image = card.querySelector('.imageCard > img').src;
 
-        const buttons = document.createElement('div');
-        buttons.setAttribute('class', 'buttons');
+        const buttonContainer = document.createElement('div');
+        buttonContainer.setAttribute('class', 'actionButton');
         const editButton = document.createElement('button');
         editButton.setAttribute("id", url)
         const iconEdit = document.createElement('i');
@@ -47,9 +47,9 @@ const btn_create = document.querySelector('#btn_create');
         iconDelete.setAttribute('class', 'far fa-trash-alt');
         deleteButton.appendChild(iconDelete);
 
-        buttons.appendChild(editButton);
-        buttons.appendChild(deleteButton);
-        card.appendChild(buttons);
+        buttonContainer.appendChild(editButton);
+        buttonContainer.appendChild(deleteButton);
+        card.appendChild(buttonContainer);
 
         editButton.addEventListener('click', () => {
 

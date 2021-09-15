@@ -11,9 +11,10 @@ html(lang="es")
         title FAVORITES
     body
         include ./users_menu.pug
-        .logo 
+        header.logo 
             img(src="/public/assets/images/logo.png")
-        .container 
-            .cards
+        .push 
+        main.container
+            section.cards
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/render_user_favorites.js")

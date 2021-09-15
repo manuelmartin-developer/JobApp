@@ -29,15 +29,15 @@ const api = {
             const query = req.query.query;
             const search = query.replace(" ", "%20");
 
-            const linkedin = await scraperLinkedin(`https://es.linkedin.com/jobs/search?keywords=developer%20${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
             const welcome = await scraperWelcome(`https://www.welcometothejungle.com/es/jobs?aroundQuery=Espa%C3%B1a%2C%20Espa%C3%B1a&refinementList%5Boffice.country_code%5D%5B%5D=ES&page=1&range%5Bexperience_level_minimum%5D%5Bmin%5D=0&range%5Bexperience_level_minimum%5D%5Bmax%5D=1&query=developer%20${search}`);
+            const linkedin = await scraperLinkedin(`https://es.linkedin.com/jobs/search?keywords=developer%20${search}&location=Espa%C3%B1a&locationId=&geoId=105646813&sortBy=DD&f_TPR=&position=1&pageNum=0`);
             const jobAds = await Jobs.find({
                 jobTitle: {
                     $regex: query,
                     $options: 'i'
                 }
             })
-            const data = linkedin.concat(jobAds, welcome)
+            const data = welcome.concat(jobAds, linkedin)
             res.status(200).json(data);
         } catch (error) {
             res.status(400).json({

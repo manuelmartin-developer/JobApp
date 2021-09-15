@@ -19,6 +19,7 @@ const scraperWelcome = async (url) => {
 
         console.log(`Navigating to ${url}...`);
         await page.goto(url);
+        await page.waitForSelector('ol.sc-1dr65rf-0.rvKcA.ais-Hits-list');
 
         const jobs = await page.$$eval('ol.sc-1dr65rf-0.rvKcA.ais-Hits-list', () => {
             const jobData = [];
@@ -28,7 +29,7 @@ const scraperWelcome = async (url) => {
             let jobDate = "";
             let jobImg = "";
             let jobUrl = "";
-            const issues = document.querySelectorAll('ol.sc-1dr65rf-0.rvKcA.ais-Hits-list > li');
+            const issues = document.querySelectorAll('li.ais-Hits-list-item');
             issues.forEach(issue => {
                 //!TITULO OFERTA
                 if (issue.querySelector("h3.sc-1kkiv1h-9.sc-7dlxn3-4.ivyJep.iXGQr")) {
@@ -63,9 +64,13 @@ const scraperWelcome = async (url) => {
                     jobImg = "https://cdn.iconscout.com/icon/premium/png-128-thumb/no-image-2840213-2359555.png"
                 }
                 //! JOB URL
-                if (issue.querySelector("div.sc-1kkiv1h-0.sc-7dlxn3-0.hKrqEn.gscFBq > a")) {
-                    jobUrl = issue.querySelector("div.sc-1kkiv1h-0.sc-7dlxn3-0.hKrqEn.gscFBq > a").href
-                } else {
+                if (issue.querySelector("header.sc-7dlxn3-2.eGEqwR > a")) {
+                    jobUrl = issue.querySelector("header.sc-7dlxn3-2.eGEqwR > a").href
+                }
+                // if (issue.querySelector("div.sc-1kkiv1h-0.sc-7dlxn3-0.hKrqEn.gscFBq > a")) {
+                //     jobUrl = issue.querySelector("div.sc-1kkiv1h-0.sc-7dlxn3-0.hKrqEn.gscFBq > a").href
+                // } 
+                else {
                     jobUrl = "Sin datos"
                 }
                 jobData.push({

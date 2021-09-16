@@ -118,7 +118,7 @@ const btn_create = document.querySelector('#btn_create');
                             timer: 2000
                         })
                         const infoCard = card.querySelector('.infoCard > a > h3');
-                        const infoCard2 = infoCard.querySelector('.infoCard2');
+                        const infoCard2 = card.querySelector('.infoCard2');
                         const imageCard = card.querySelector('.imageCard');
 
                         infoCard.innerHTML = `<a href="${newUrl}" target="_blank">

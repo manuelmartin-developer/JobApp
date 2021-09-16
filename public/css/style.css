@@ -17,6 +17,10 @@ a:visited{
     color: #F7BF4F;
     text-decoration: none;
 }
+#btn_logout{
+    text-align: left;
+   box-shadow: none;
+}
 .swal2-popup {
     font-size: 1rem !important;
     font-family: Arial;
@@ -37,7 +41,7 @@ a:visited{
 
 }
 .logo > img {
-    width: 50%;
+    height: 42px;
     object-fit: scale-down;
 }
 
@@ -207,23 +211,6 @@ label {
     width: 70%;
 }
 
-/* .one_job{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-    width: 50vw;
-    margin: 10px;
-    border-radius: 20px;
-    box-shadow: 2px 2px lightgray;
-    border: 0.5px solid grey;
-}
-.one_job>img{
-    height: 50px;
-    width: 50px;
-    border-radius: 25px;
-    padding: 5px 0;
-} */
 .list_users{
     display: flex;
     flex-direction: column;
@@ -273,4 +260,49 @@ label {
 	cursor: pointer;
 	font-size: 2rem;
 	opacity: 0.80;
+}
+/* MEDIA QUERIES */
+@media screen and (min-width: 769px) {
+
+    .cards{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+    .info_search{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    .card{
+        width: 33%;
+    }
+    .list_users{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .one_user{
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .card{
+        width: 30%;
+    }
+    .one_user{
+        width: 30%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .card{
+        width: 20%
+    }
+    .one_user{
+        width: 20%;
+    }
 }

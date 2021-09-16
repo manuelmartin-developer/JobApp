@@ -14,7 +14,7 @@ html(lang="es")
         .logo 
             img(src="/public/assets/images/logo.png")
         .push 
-        .container
+        main.container
             label(for="name") Nombre
             input(type="text", name="name", id="input_name")
             label(for="surname") Apellido
@@ -22,17 +22,17 @@ html(lang="es")
             label(for="email") Email
             input(type="text", name="email", id="input_email") 
             label(for="password") Password
-            .pass_container
+            section.pass_container
                 input(type="password" name="password" id="input_password" required) 
                 i(id="togglePassword" class="fas fa-eye-slash")
             input(type="submit", value="Registrar Usuario" id="btn_create_user")
-            .list_users
-                each user in users
-                    .one_user
-                        .user_info
-                            p#user_name=user.name
-                            p#user_surname=user.surname
-                            p#user_email=user.email
+        section.list_users
+            each user in users
+                .one_user
+                    .user_info
+                        p#user_name=user.name
+                        p#user_surname=user.surname
+                        p#user_email=user.email
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/register_user_admin.js")
         script(src="utils/toggle_password.js")

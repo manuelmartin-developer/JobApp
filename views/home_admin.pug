@@ -4,7 +4,6 @@ html(lang="es")
         meta(charset="UTF-8")
         meta(http-equiv="X-UA-Compatible", content="IE=edge")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
         style
             include ../public/css/style.css
             include ../public/css/menu.css
@@ -14,10 +13,9 @@ html(lang="es")
         .logo 
             img(src="/public/assets/images/logo.png")
         .push
-        .container
-            button(id="btn_users")
-                i(class="fas fa-users" onclick="window.location.href='/users'")
-            button(id="btn_dashboard")
-                i(class="fas fa-tachometer-alt" onclick="window.location.href='/dashboard'")
-        .cards
-        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        main.container
+            section.admin_buttons
+                article.user_button
+                    input(type="submit" id="btn_users" onclick="window.location.href='/users'" value ="Usuarios")
+                article.dashboard_button
+                    input(type="submit" id="btn_dashboard" onclick="window.location.href='/dashboard'" value ="Trabajos") 

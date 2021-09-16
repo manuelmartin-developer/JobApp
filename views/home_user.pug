@@ -1,0 +1,36 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title JobApp
+    body
+        include ./users_menu.pug
+        header.logo 
+            img(src="/public/assets/images/logo.png")
+        .push
+        main.container
+            section.search
+                input.input(id="input_search", type="text", name="search")
+                button.button(id="btn_search")
+                    i(class="fas fa-search")
+            .info_search
+                |Hay 
+                span=`${data.length} `
+                |trabajos patrocinados
+            section.cards
+            button(onclick="topFunction()" id="btn_top")
+                i(class="fas fa-chevron-circle-up")
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/paint_card.js")
+        script(src="utils/render_jobs_home_user.js")
+        script(src="/utils/top_button.js")
+        script.
+            const jobs = !{jsStringify(data)}
+        script(src="/utils/jobs_default.js")
+        

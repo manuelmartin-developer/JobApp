@@ -1,0 +1,21 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title JobApp
+    body
+        include ./admin_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png")
+        .push
+        main.container
+            section.admin_buttons
+                article.user_button
+                    input(type="submit" id="btn_users" onclick="window.location.href='/users'" value ="Usuarios")
+                article.dashboard_button
+                    input(type="submit" id="btn_dashboard" onclick="window.location.href='/dashboard'" value ="Trabajos") 

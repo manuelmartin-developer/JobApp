@@ -1,0 +1,38 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title USERS
+    body
+        include ./admin_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png")
+        .push 
+        main.container
+            label(for="name") Nombre
+            input(type="text", name="name", id="input_name")
+            label(for="surname") Apellido
+            input(type="text", name="surname", id="input_surname")
+            label(for="email") Email
+            input(type="text", name="email", id="input_email") 
+            label(for="password") Password
+            section.pass_container
+                input(type="password" name="password" id="input_password" required) 
+                i(id="togglePassword" class="fas fa-eye-slash")
+            input(type="submit", value="Registrar Usuario" id="btn_create_user")
+        section.list_users
+            each user in users
+                .one_user
+                    .user_info
+                        p#user_name=user.name
+                        p#user_surname=user.surname
+                        p#user_email=user.email
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/register_user_admin.js")
+        script(src="utils/toggle_password.js")

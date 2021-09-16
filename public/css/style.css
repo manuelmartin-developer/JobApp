@@ -1,0 +1,311 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif
+}
+
+ i{
+    height: 20px;
+    width: 20px;
+}
+a{
+    color: #495057;
+    text-decoration: none;
+    margin: 10px 0;
+}
+a:visited{
+    color: #F7BF4F;
+    text-decoration: none;
+}
+#btn_logout{
+    text-align: left;
+   box-shadow: none;
+}
+.swal2-popup {
+    font-size: 1rem !important;
+    font-family: Arial;
+  }
+
+.logo{
+    width: 100vw;
+    height: 100px;
+    background-color: #F7BF4F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.logo > img {
+    height: 42px;
+    object-fit: scale-down;
+}
+
+body{
+    width: 99vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+.push{
+    height: 100px;
+}
+.cards{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.card{
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    height: 100px;
+    width: 80%;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+}
+.title{
+    font-size: 1rem;
+    color: #495057;
+    height: 40%;
+}
+.company, .location, .date {
+    font-size: 0.7rem;
+    color: #495057;
+
+}
+.infoCard{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 70%;
+
+}
+.infoCard2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 60%;
+
+}
+.infoCard > a {
+    text-decoration: none;
+}
+.imageCard{
+    margin-right: 10px;
+    width: 20%;
+}
+.imageCard > img{
+    height: 50px;
+    border-radius: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+} 
+
+.actionButton{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 10%;
+
+}
+.actionButton > button {
+    background-color: transparent;
+    border: none;
+}
+
+.search{
+    display: flex;
+    position: relative;
+}
+.totalJobs{
+    margin: 20px 0px;
+
+}
+.info_search{
+    margin: 20px 0;
+}
+#input_search{
+    height: 30px;
+    padding-left: 30px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 5px;
+}
+input[type=text], input[type=password]{
+    height: 30px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 5px;
+    padding-left: 3px;
+}
+input[type=submit]{
+    height: 30px;
+    background-color: #e9ecef;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+label {
+    margin: 5px 0;
+}
+#btn_search{
+    position: absolute;
+    bottom: 7px;
+    left: 5px;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: none;
+}
+.pass_container{
+    display: flex;
+    position: relative;
+}
+#togglePassword{
+    position: absolute;
+    bottom: 7px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: none;
+}
+#btn_create{
+    margin-bottom: 20px;
+}
+.buttonsSignIn{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttonSignIn {
+    width: 180px
+}
+
+.admin_buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+}
+.user_button, .dashboard_button{
+    width: 70%;
+}
+
+.list_users{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+
+}
+.one_user{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 5px;
+    
+}
+.user_info{
+    width: 90%;
+    font-size: 0.7rem;
+    color: #495057;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+ 
+}
+.buttons > button{
+    background-color: transparent;
+    border: none;
+}
+#btn_create_user{
+    margin: 20px 0;
+}
+#input_pass1{
+    margin-bottom: 10px;
+}
+#btn_top {
+	display: none;
+	position: fixed;
+	bottom: 8%;
+	right: 8%;
+	z-index: 99;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	color: #F7BF4F;
+	cursor: pointer;
+	font-size: 2rem;
+	opacity: 0.80;
+}
+/* MEDIA QUERIES */
+@media screen and (min-width: 769px) {
+
+    .cards{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+    .info_search{
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+    .card{
+        width: 33%;
+    }
+    .list_users{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .one_user{
+        width: 33%;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .card{
+        width: 30%;
+    }
+    .one_user{
+        width: 30%;
+    }
+}
+@media screen and (min-width: 1920px) {
+    .card{
+        width: 20%
+    }
+    .one_user{
+        width: 20%;
+    }
+}

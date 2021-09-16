@@ -1,0 +1,16 @@
+nav(role='navigation')
+  #menuToggle
+    input(type='checkbox')
+    span
+    span
+    span
+    ul#menu
+        a(href='/')
+            li Home
+        a(href='/favorites')
+            li Favorites
+        a(href='/profile')
+            li Profile
+        form(action="/api/logout", method="post")
+            li
+                input(id="btn_logout" type="submit", value="LogOut")

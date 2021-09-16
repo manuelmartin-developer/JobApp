@@ -1,0 +1,20 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title FAVORITES
+    body
+        include ./users_menu.pug
+        header.logo 
+            img(src="/public/assets/images/logo.png")
+        .push 
+        main.container
+            section.cards
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/render_user_favorites.js")

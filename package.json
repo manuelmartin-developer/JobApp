@@ -1,0 +1,48 @@
+{
+  "name": "JobApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manuelmartin-developer/JobApp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manuelmartin-developer/JobApp/issues"
+  },
+  "homepage": "https://github.com/manuelmartin-developer/JobApp#readme",
+  "dependencies": {
+    "@sweetalert2/sweetforms": "^1.0.3",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "js-stringify": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.1.1",
+    "mongoose": "^6.0.3",
+    "node-fetch": "^3.0.0",
+    "nodemailer": "^6.6.3",
+    "nodemon": "^2.0.12",
+    "passport": "^0.4.1",
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
+    "pg": "^8.7.1",
+    "pug": "^3.0.2",
+    "puppeteer": "^10.2.0",
+    "readme-md-generator": "^1.0.0"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0"
+  }
+}

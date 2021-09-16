@@ -1,0 +1,32 @@
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous") 
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Sign in
+    body
+        include ./guest_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png")
+        .push
+        .container
+            label(for="email") Email
+            input(type="text" name="email" id="input_email") 
+            label(for="password") Password
+            .pass_container
+                input(type="password" name="password" id="input_password") 
+                i(id="togglePassword" class="fas fa-eye-slash")
+            input(type="submit", value="Sign in" id="btn_login_user")
+            .buttonsSignIn
+                a(href="/api/google")
+                    img.buttonSignIn(src="/public/assets/images/signin_google.png", alt="login google")
+                a(href="/api/github")
+                    img.buttonSignIn(src="/public/assets/images/signin_github.png", alt="login github")
+                a(href="/recoverPass") Recuperar contraseña
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/login_user.js")
+        script(src="utils/toggle_password.js")

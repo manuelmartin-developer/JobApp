@@ -1,0 +1,38 @@
+doctype html
+html(lang="es")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        script(src="https://kit.fontawesome.com/a5b1eae3e6.js" crossorigin="anonymous")
+        style
+            include ../public/css/style.css
+            include ../public/css/menu.css
+        title Dashboard
+    body
+        include ./admin_menu.pug
+        .logo 
+            img(src="/public/assets/images/logo.png")
+        .push 
+        .container
+            label(for="title") Título
+            input(type="text" name="title" id="input_title" placeholder="Introduce Título")
+            label(for="company") Empresa
+            input(type="text" name="company" id="input_company" placeholder="Introduce Compañía") 
+            label(for="location") Localización
+            input(type="text" name="location" id="input_location" placeholder="Introduce Localización") 
+            label(for="date") Fecha de publicación
+            input(type="text" name="date" id="input_date" placeholder="Introduce fecha") 
+            label(for="image") Imagen
+            input(type="text" name="image" id="input_image" placeholder="Introduce URL Compañía") 
+            label(for="url") Url oferta
+            input(type="text" name="url" id="input_url" placeholder="Introduce URL Oferta") 
+            input(type="submit", value="Crear Oferta" id="btn_create")
+            button(onclick="topFunction()" id="btn_top")
+                i(class="fas fa-chevron-circle-up")
+        .cards
+        script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
+        script(src="utils/paint_card.js")
+        script(src="utils/create_job.js")
+        script(src="/utils/top_button.js")
+            

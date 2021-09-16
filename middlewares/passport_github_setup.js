@@ -5,6 +5,7 @@ const {
     createUser,
     getUser
 } = require('../models/users')
+const bcryptjs = require('bcryptjs');
 
 // Crear una contraseña random para el usuario registrado con github
 function randomPass() {
@@ -26,7 +27,8 @@ passport.use(new GitHubStrategy({
         const user_email = profile.emails[0].value
         const user_surname = profile.displayName
         const user_name = profile.displayName
-        const user_password = randomPass()
+        const random_password = randomPass()
+        const user_password = bcryptjs.hashSync(await random_password, 8)
         const githubUserCheck = await getUser(user_email)
         if (githubUserCheck.length !== 0) {
             const userToLogin = await getUser(user_email)

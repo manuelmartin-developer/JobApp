@@ -19,6 +19,10 @@ html(lang="en")
                 input.input(id="input_search", type="text", name="search")
                 button.button(id="btn_search")
                     i(class="fas fa-search")
+            .info_search
+                |Hay 
+                span=`${data.length} `
+                |trabajos patrocinados
             section.cards
             button(onclick="topFunction()" id="btn_top")
                     i(class="fas fa-chevron-circle-up")
@@ -26,4 +30,7 @@ html(lang="en")
         script(src="utils/paint_card.js")
         script(src="utils/render_jobs_home_user.js")
         script(src="/utils/top_button.js")
+        script.
+            const jobs = !{jsStringify(data)}
+        script(src="/utils/jobs_default.js")
         

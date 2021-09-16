@@ -117,12 +117,14 @@ const btn_create = document.querySelector('#btn_create');
                             showConfirmButton: false,
                             timer: 2000
                         })
-                        const infoCard = card.querySelector('.infoCard');
+                        const infoCard = card.querySelector('.infoCard > a > h3');
+                        const infoCard2 = infoCard.querySelector('.infoCard2');
                         const imageCard = card.querySelector('.imageCard');
+
                         infoCard.innerHTML = `<a href="${newUrl}" target="_blank">
                                                     <h3>${newTitle}</h3>
-                                                </a>
-                                                <h4>${newCompany}</h4>
+                                                </a>`
+                        infoCard2.innerHTML = `<h4>${newCompany}</h4>
                                                 <h4>${newLocation}</h4>
                                                 <h4>${newDate}</h4>`
                         imageCard.innerHTML = `<img src="${newImage}">`                        

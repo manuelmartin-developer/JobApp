@@ -15,9 +15,9 @@ html(lang="en")
             img(src="/public/assets/images/logo.png")
         .push
         .container
-            label(for="name") Name
+            label(for="name") Nombre
             input(type="text" name="name" id="input_name")
-            label(for="surname") Surname
+            label(for="surname") Apellido
             input(type="text" name="surname" id="input_surname")  
             label(for="email") Email
             input(type="text" name="email" id="input_email") 
@@ -25,7 +25,7 @@ html(lang="en")
             .pass_container
                 input(type="password" name="password" id="input_password") 
                 i(id="togglePassword" class="fas fa-eye-slash")
-            input(type="submit", value="Register User" id="btn_create_user")
+            input(type="submit", value="Registrar Usuario" id="btn_create_user")
 
         script(src="//cdn.jsdelivr.net/npm/sweetalert2@11")
         script(src="utils/register_user.js")

@@ -1,8 +1,14 @@
 const { getAllUsers } = require("../models/users")
+const Jobs = require('../models/jobSchema');
+const jsStringify = require('js-stringify');
 
 const users = {
     home: async (req, res) => {
-        res.status(200).render('home_guest')
+        const data = await Jobs.find();
+        res.status(200).render('home_guest', {
+            jsStringify,
+            data
+        })
     },
     signUp: async (req, res) => {
         res.status(200).render('register')

@@ -32,8 +32,7 @@ btn_search.addEventListener('click', () => {
 
         //Mostramos la cantidad de resultados de la búsqueda
         cards.innerHTML = "";
-        const totalJobs = document.createElement('section')
-        totalJobs.setAttribute('class', 'totalJobs');
+        const totalJobs = document.querySelector('.info_search')
         totalJobs.innerHTML = `Hay ${data.length} elementos en la búsqueda               `
         cards.appendChild(totalJobs);
 

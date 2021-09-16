@@ -84,7 +84,7 @@ const scraperLinkedin = async (url) => {
                 if (issue.querySelector("div.base-card > div.search-entity-media > img")) {
                     jobImg = issue.querySelector("div.base-card > div.search-entity-media > img").src
                 } else {
-                    jobImg = "https://cdn.iconscout.com/icon/premium/png-128-thumb/no-image-2840213-2359555.png"
+                    jobImg = "/public/assets/images/no-image.webp"
                 }
                 //! JOB URL
                 if (issue.querySelector("a.base-card__full-link")) {

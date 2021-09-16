@@ -5,6 +5,7 @@ const {
     createUser,
     getUser
 } = require('../models/users')
+const bcryptjs = require('bcryptjs');
 
 // Crear una contraseña random para el usuario registrado con Google
 function randomPass() {
@@ -25,7 +26,8 @@ passport.use(new GoogleStrategy({
         const user_email = profile._json.email
         const user_surname = profile._json.family_name
         const user_name = profile._json.given_name
-        const user_password = randomPass()
+        const random_password = randomPass()
+        const user_password = bcryptjs.hashSync(await random_password, 8)
         const googleUserCheck = await getUser(user_email)
         if (googleUserCheck.length !== 0) {
             const userToLogin = await getUser(user_email)

@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
 const User = require('../models/users')
+const Jobs = require('../models/jobSchema');
+const jsStringify = require('js-stringify');
 
 verifyToken = (req, res, next) => {
     if (!req.cookies.token) {
@@ -59,9 +61,13 @@ verifyRoleHome = (req, res, next) => {
             .then(data => {
 
                 if (data[0].role === 'user') {
-                    return res.status(200).render("home_user", {
-                        data
-                    });
+                        const jobs = Jobs.find()
+                        .then(data => {
+                            return res.status(200).render('home_user', {
+                                jsStringify,
+                                data
+                            })
+                        })
                 }
 
                 if (data[0].role === 'admin') {

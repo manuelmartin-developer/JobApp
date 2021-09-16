@@ -33,23 +33,39 @@ a:visited{
     top: 0;
     left: 0;
     margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
 }
 .logo > img {
     width: 50%;
     object-fit: scale-down;
 }
+
 body{
     width: 99vw;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
 
 }
+
+/* .footer{
+    height: 25px;
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+    clear: both;
+    position: fixed;
+    bottom: 0;
+    background-color: #F7BF4F;
+    
+} */
 .push{
     height: 100px;
 }
@@ -118,6 +134,19 @@ body{
     background-color: transparent;
     border: none;
 }
+/* .social_buttons{
+    background-color: transparent;
+    border: none;
+    margin-right: 20px;
+    font-size: 0.5rem;
+    color: #495057;
+    
+}
+.fab.fa-github{
+    font-size: 1.2rem;
+    color: black;
+
+} */
 .search{
     display: flex;
     position: relative;

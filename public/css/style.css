@@ -247,6 +247,9 @@ label {
 #btn_create_user{
     margin: 20px 0;
 }
+#input_pass1{
+    margin-bottom: 10px;
+}
 #btn_top {
 	display: none;
 	position: fixed;

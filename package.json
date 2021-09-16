@@ -26,7 +26,6 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
-    "helmet": "^4.6.0",
     "js-stringify": "^1.0.2",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^4.1.1",
@@ -39,8 +38,7 @@
     "passport-google-oauth20": "^2.0.0",
     "pg": "^8.7.1",
     "pug": "^3.0.2",
-    "puppeteer": "^10.2.0",
-    "readme-md-generator": "^1.0.0"
+    "puppeteer": "^10.2.0"
   },
   "devDependencies": {
     "jest": "^27.1.0"

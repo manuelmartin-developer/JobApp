@@ -122,12 +122,12 @@ const btn_create = document.querySelector('#btn_create');
                         const imageCard = card.querySelector('.imageCard');
 
                         infoCard.innerHTML = `<a href="${newUrl}" target="_blank">
-                                                    <h3>${newTitle}</h3>
+                                                    <h3 class="title">${newTitle}</h3>
                                                 </a>`
-                        infoCard2.innerHTML = `<h4>${newCompany}</h4>
-                                                <h4>${newLocation}</h4>
-                                                <h4>${newDate}</h4>`
-                        imageCard.innerHTML = `<img src="${newImage}">`                        
+                        infoCard2.innerHTML = `<h4 class="company">${newCompany}</h4>
+                                                <h4 class="location">${newLocation}</h4>
+                                                <h4 class="date">${newDate}</h4>`
+                        imageCard.innerHTML = `<img class="image" src="${newImage}">`          
 
                     })();
                 }

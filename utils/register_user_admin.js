@@ -167,14 +167,21 @@ btn_create_user.addEventListener('click', () => {
                 if (okay) {
                     const one_user = document.createElement('div');
                     one_user.setAttribute('class', 'one_user');
+                    const user_info = document.createElement('div')
+                    user_info.setAttribute('class', 'user_info')
                     const name = document.createElement('p');
                     name.setAttribute('id', 'user_name');
                     name.innerText = input_name.value;
+                    const surname = document.createElement('p');
+                    surname.setAttribute('id', 'user_surname');
+                    surname.innerText = input_surname.value;
                     const email = document.createElement('p');
                     email.setAttribute('id', 'user_email');
                     email.innerText = input_email.value;
-                    one_user.appendChild(name);
-                    one_user.appendChild(email);
+                    one_user.appendChild(user_info)
+                    user_info.appendChild(name);
+                    user_info.appendChild(surname);
+                    user_info.appendChild(email);
                     list_users.appendChild(one_user);
 
                     input_name.value = "";
